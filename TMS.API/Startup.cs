@@ -57,7 +57,6 @@ namespace TMS.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-
             #region 注入Dapper配置
             //连接SqlServer数据库
             services.AddDapper("SqlDb", m =>
@@ -275,17 +274,6 @@ namespace TMS.API
             #endregion
 
             #region 使用注入内容
-            //允许请求文件【上传】
-            app.UseStaticFiles();
-
-            app.UseAuthentication();
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
             //配置Cors跨域
             app.UseCors("cor");
 

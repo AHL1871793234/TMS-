@@ -42,7 +42,7 @@ namespace TMS.API
                 //这种注册方式有问题，采用下面的方式
                 //loggingBuilder.AddLog4Net("log4net.config");
                 //一定要注意文件路径
-                loggingBuilder.AddLog4Net(Path.Combine(Directory.GetCurrentDirectory(), "log4net.config"));
+                loggingBuilder.AddLog4Net(Path.Combine(Directory.GetCurrentDirectory(),"log4net.config"));
             })
 
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())//依赖注入
