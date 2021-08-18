@@ -36,9 +36,5 @@ namespace TMS.Model.ViewModel
         public string UserSchool { get; set; }
         public string UseMajor { get; set; }
         public string UserHomePlace { get; set; }
-       
-
-
-
     }
 }
