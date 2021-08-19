@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMS.Service.Personnel;
 using Microsoft.AspNetCore.Hosting;
 using TMS.Model.ViewModel;
+using TMS.Model.Entity;
 
 namespace TMS.API.Controllers.Personnel.Employeeregistration
 {
@@ -56,6 +57,36 @@ namespace TMS.API.Controllers.Personnel.Employeeregistration
             catch (Exception)
             {
                 return Ok(new { code = false, meta = 500, msg = "获取失败", count = 0, data = "" });
+            }
+        }
+
+        /// <summary>
+        /// 人事模块—员工登记—添加API
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
+        [Route(nameof(AddEmployeeRegistrations))]
+        [HttpPost]
+        public IActionResult AddEmployeeRegistrations([FromForm]UserModel userModel)
+        {
+            //异常处理
+            try
+            {
+                //获取数据集
+                bool data = _employeeregistration.AddEmployeeRegistrations(userModel);
+                //判断数据是否为真(是否存在)
+                if (data == true)
+                {
+                    return Ok(new { code = data, meta = 200, msg = "添加成功" });
+                }
+                else
+                {
+                    return Ok(new { code = data, meta = 500, msg = "添加失败" });
+                }
+            }
+            catch (Exception)
+            {
+                return Ok(new { code = 0, meta = 500, msg = "添加失败，处里异常!" });
             }
         }
     }

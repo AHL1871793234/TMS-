@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+ï»¿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using ApplicationInsights.OwinExtensions;
@@ -33,7 +33,7 @@ using Microsoft.AspNetCore.Http;
 namespace TMS.API
 {
     /// <summary>
-    /// Startup Àà
+    /// Startup ç±»
     /// </summary>
     public class Startup
     {
@@ -57,37 +57,37 @@ namespace TMS.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            #region ×¢ÈëDapperÅäÖÃ
-            //Á¬½ÓSqlServerÊı¾İ¿â
+            #region æ³¨å…¥Dapperé…ç½®
+            //è¿æ¥SqlServeræ•°æ®åº“
             services.AddDapper("SqlDb", m =>
             {
                 m.ConnectionString = Configuration.GetConnectionString("SqlServer");
-                //Êı¾İ¿âÀàĞÍSqlServer
+                //æ•°æ®åº“ç±»å‹SqlServer
                 m.DbType = DbStoreType.SqlServer;
             });
             #endregion
 
-            #region Redis»º´æ
-            ////redis»º´æ
+            #region Redisç¼“å­˜
+            ////redisç¼“å­˜
             //var section = Configuration.GetSection("Redis:Default");
-            ////Á¬½Ó×Ö·û´®
+            ////è¿æ¥å­—ç¬¦ä¸²
             //ConfigHelperRedis._conn = section.GetSection("Connection").Value;
-            ////ÊµÀı»¯Ãû³Æ
+            ////å®ä¾‹åŒ–åç§°
             //ConfigHelperRedis._name = section.GetSection("InstanceName").Value;
-            ////ÃÜÂë
+            ////å¯†ç 
             //ConfigHelperRedis._pwd = section.GetSection("PassWord").Value;
-            ////Ä¬ÈÏÊı¾İ¿â
+            ////é»˜è®¤æ•°æ®åº“
             //ConfigHelperRedis._db = int.Parse(section.GetSection("DefaultDB").Value ?? "0");
-            ////¶Ë¿ÚºÅ
+            ////ç«¯å£å·
             //ConfigHelperRedis._port = int.Parse(section.GetSection("Prot").Value);
-            ////·şÎñÆ÷Ãû³Æ/IP
+            ////æœåŠ¡å™¨åç§°/IP
             //ConfigHelperRedis._server = section.GetSection("Server").Value;
 
             //services.AddSingleton(new RedisHelper());
             #endregion
 
-            #region SQL×¢Èë
-            //¿ØÖÆÆ÷ÉÏ¼ÓSQL×¢Èë¹ıÂËÆ÷
+            #region SQLæ³¨å…¥
+            //æ§åˆ¶å™¨ä¸ŠåŠ SQLæ³¨å…¥è¿‡æ»¤å™¨
             //services.AddControllers(options =>
             //{
             //    options.Filters.Add<CustomSQLInjectFilter>();
@@ -95,14 +95,14 @@ namespace TMS.API
             //services.AddControllers();
             #endregion
 
-            #region Swagger(Ë¹Íß¸ñ)ÑéÖ¤¼°ÅäÖÃ
+            #region Swagger(æ–¯ç“¦æ ¼)éªŒè¯åŠé…ç½®
             services.AddControllers();
-            //ASP.NET Core MVC µÄ¼æÈİĞÔ°æ±¾ÅäÖÃ
-            //CompatibilityVersion Öµ Version_2_0 µ½ Version_2_2 ±»±ê¼ÇÎª[Obsolete(...)]¡£
-            //¶ÔÓÚ ASP.NET Core 3.0£¬ÒÑÉ¾³ı¼æÈİĞÔ¿ª¹ØÖ§³ÖµÄ¾ÉĞĞÎª
+            //ASP.NET Core MVC çš„å…¼å®¹æ€§ç‰ˆæœ¬é…ç½®
+            //CompatibilityVersion å€¼ Version_2_0 åˆ° Version_2_2 è¢«æ ‡è®°ä¸º[Obsolete(...)]ã€‚
+            //å¯¹äº ASP.NET Core 3.0ï¼Œå·²åˆ é™¤å…¼å®¹æ€§å¼€å…³æ”¯æŒçš„æ—§è¡Œä¸º
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            //Èç¹û½«Ó¦ÓÃ³ÌĞòµÄ¼æÈİĞÔ°æ±¾ÉèÖÃÎª Version_2_0 Ôò´ËÉèÖÃµÄÖµ½«Îª false £¬³ı·Ç½øĞĞÏÔÊ½ÅäÖÃ¡£
-            //Èç¹û½«Ó¦ÓÃ³ÌĞòµÄ¼æÈİĞÔ°æ±¾ÉèÖÃÎª Version_2_1 »ò¸ü¸ß°æ±¾£¬Ôò³ı·ÇÏÔÊ½ÅäÖÃ£¬·ñÔò´ËÉèÖÃµÄÖµ½« Îª true ¡£
+            //å¦‚æœå°†åº”ç”¨ç¨‹åºçš„å…¼å®¹æ€§ç‰ˆæœ¬è®¾ç½®ä¸º Version_2_0 åˆ™æ­¤è®¾ç½®çš„å€¼å°†ä¸º false ï¼Œé™¤éè¿›è¡Œæ˜¾å¼é…ç½®ã€‚
+            //å¦‚æœå°†åº”ç”¨ç¨‹åºçš„å…¼å®¹æ€§ç‰ˆæœ¬è®¾ç½®ä¸º Version_2_1 æˆ–æ›´é«˜ç‰ˆæœ¬ï¼Œåˆ™é™¤éæ˜¾å¼é…ç½®ï¼Œå¦åˆ™æ­¤è®¾ç½®çš„å€¼å°† ä¸º true ã€‚
             //.AddMvcOptions(options =>
             //{
             //    // Don't combine authorize filters (keep 2.0 behavior).
@@ -112,88 +112,80 @@ namespace TMS.API
             //    options.InputFormatterExceptionPolicy =
             //        InputFormatterExceptionPolicy.AllExceptions;
             //});
-            //Ìí¼Ó²¢ÅäÖÃ Swagger ÖĞ¼ä¼ş
-            //×¢²áSwaggerÉú³ÉÆ÷£¬¶¨ÒåÒ»¸öºÍ¶à¸öSwagger ÎÄµµ
+            //æ·»åŠ å¹¶é…ç½® Swagger ä¸­é—´ä»¶
+            //æ³¨å†ŒSwaggerç”Ÿæˆå™¨ï¼Œå®šä¹‰ä¸€ä¸ªå’Œå¤šä¸ªSwagger æ–‡æ¡£
             services.AddSwaggerGen(c =>
             {
-                //±êÌâ¡ª°æ±¾¡ªÃèÊö
+                //æ ‡é¢˜â€”ç‰ˆæœ¬â€”æè¿°
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TMS.API", Version = "v1", Description = "TMS.API" });
-                //ÎªSwagger ÉèÖÃxmlÎÄµµ×¢ÊÍÂ·¾¶
+                //ä¸ºSwagger è®¾ç½®xmlæ–‡æ¡£æ³¨é‡Šè·¯å¾„
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //API¿ØÖÆÆ÷²ã×¢ÊÍ£¬true±íÊ¾ÏÔÊ¾¿ØÖÆÆ÷×¢ÊÍ
+                //APIæ§åˆ¶å™¨å±‚æ³¨é‡Šï¼Œtrueè¡¨ç¤ºæ˜¾ç¤ºæ§åˆ¶å™¨æ³¨é‡Š
                 c.IncludeXmlComments(xmlPath, true);
             });
             #endregion
 
-            #region JWTÑéÖ¤ÅäÖÃ
-            //JWTÓÅµã
-            //Í¨ÓÃ£ºÒòÎªjsonµÄÍ¨ÓÃĞÔ£¬ËùÒÔJWTÊÇ¿ÉÒÔ½øĞĞ¿çÓïÑÔÖ§³ÖµÄ£¬ÏñJAVA,JavaScript,NodeJS,PHPµÈºÜ¶àÓïÑÔ¶¼¿ÉÒÔÊ¹ÓÃ¡£
-            //½ô´Õ£ºJWTµÄ¹¹³É·Ç³£¼òµ¥£¬×Ö½ÚÕ¼ÓÃºÜĞ¡£¬¿ÉÒÔÍ¨¹ı GET¡¢POST µÈ·ÅÔÚ HTTP µÄ header ÖĞ£¬·Ç³£±ãÓÚ´«Êä¡£
-            //À©Õ¹£ºJWTÊÇ×ÔÎÒ°üº­µÄ£¬°üº¬ÁË±ØÒªµÄËùÓĞĞÅÏ¢£¬²»ĞèÒªÔÚ·şÎñ¶Ë±£´æ»á»°ĞÅÏ¢, ·Ç³£Ò×ÓÚÓ¦ÓÃµÄÀ©Õ¹¡£
+            #region JWTéªŒè¯é…ç½®
+            //JWTä¼˜ç‚¹
+            //é€šç”¨ï¼šå› ä¸ºjsonçš„é€šç”¨æ€§ï¼Œæ‰€ä»¥JWTæ˜¯å¯ä»¥è¿›è¡Œè·¨è¯­è¨€æ”¯æŒçš„ï¼ŒåƒJAVA,JavaScript,NodeJS,PHPç­‰å¾ˆå¤šè¯­è¨€éƒ½å¯ä»¥ä½¿ç”¨ã€‚
+            //ç´§å‡‘ï¼šJWTçš„æ„æˆéå¸¸ç®€å•ï¼Œå­—èŠ‚å ç”¨å¾ˆå°ï¼Œå¯ä»¥é€šè¿‡ GETã€POST ç­‰æ”¾åœ¨ HTTP çš„ header ä¸­ï¼Œéå¸¸ä¾¿äºä¼ è¾“ã€‚
+            //æ‰©å±•ï¼šJWTæ˜¯è‡ªæˆ‘åŒ…æ¶µçš„ï¼ŒåŒ…å«äº†å¿…è¦çš„æ‰€æœ‰ä¿¡æ¯ï¼Œä¸éœ€è¦åœ¨æœåŠ¡ç«¯ä¿å­˜ä¼šè¯ä¿¡æ¯, éå¸¸æ˜“äºåº”ç”¨çš„æ‰©å±•ã€‚
 
-            //»ñÈ¡JWTÅäÖÃ
+            //è·å–JWTé…ç½®
             var jwtTokenConfig = Configuration.GetSection("JWTConfig").Get<JwtTokenConfig>();
-
-            //×¢²áJwtTokenConfigÅäÖÃ·şÎñ
+            services.AddSingleton(jwtTokenConfig);
+            
+            //æ³¨å†ŒJwtTokenConfigé…ç½®æœåŠ¡
             services.Configure<JwtTokenConfig>(Configuration.GetSection("JWTConfig"));
-
-            //È¨ÖØ£º
-            //ÒÀÀµ·şÎñÉúÃüÖÜÆÚ
-            //AddTransient ÇëÇó»ñÈ¡-£¨GC»ØÊÕ-Ö÷¶¯ÊÍ·Å£© Ã¿Ò»´Î»ñÈ¡µÄ¶ÔÏó¶¼²»ÊÇÍ¬Ò»¸ö
-            //AddSingletonÏîÄ¿Æô¶¯-ÏîÄ¿¹Ø±Õ Ïàµ±ÓÚ¾²Ì¬Àà Ö»»áÓĞÒ»¸ö
-            //AddScopedÇëÇó¿ªÊ¼-ÇëÇó½áÊø  ÔÚÕâ´ÎÇëÇóÖĞ»ñÈ¡µÄ¶ÔÏó¶¼ÊÇÍ¬Ò»¸ö 
+            services.AddTransient<ITokenHelper, TokenHelper>();
+            //æƒé‡ï¼š
+            //ä¾èµ–æœåŠ¡ç”Ÿå‘½å‘¨æœŸ
+            //AddTransient è¯·æ±‚è·å–-ï¼ˆGCå›æ”¶-ä¸»åŠ¨é‡Šæ”¾ï¼‰ æ¯ä¸€æ¬¡è·å–çš„å¯¹è±¡éƒ½ä¸æ˜¯åŒä¸€ä¸ª
+            //AddSingletoné¡¹ç›®å¯åŠ¨-é¡¹ç›®å…³é—­ ç›¸å½“äºé™æ€ç±» åªä¼šæœ‰ä¸€ä¸ª
+            //AddScopedè¯·æ±‚å¼€å§‹-è¯·æ±‚ç»“æŸ  åœ¨è¿™æ¬¡è¯·æ±‚ä¸­è·å–çš„å¯¹è±¡éƒ½æ˜¯åŒä¸€ä¸ª 
             services.AddTransient<ITokenHelper, TokenHelper>();
 
-            //ÅäÖÃÉí·İÈÏÖ¤·şÎñ
+            //é…ç½®èº«ä»½è®¤è¯æœåŠ¡ è®¤è¯å‚æ•°
             services.AddAuthentication(opts =>
             {
-                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;//ÈÏÖ¤Ä£Ê½
-                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;//ÖÊÑ¯Ä£Ê½
+                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;//è®¤è¯æ¨¡å¼
+                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;//è´¨è¯¢æ¨¡å¼
             })
             .AddJwtBearer(x =>
             {
-                //¶ÔJwtBearer½øĞĞÅäÖÃ
+                //å¯¹JwtBearerè¿›è¡Œé…ç½®
                 x.RequireHttpsMetadata = true;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    //NameClaimType = JwtClaimTypes.Name,
-                    //RoleClaimType = JwtClaimTypes.Role,
-                    //ValidIssuer = "http://localhost:5200",
-                    //ValidAudience = "api",
-                    //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Consts.Secret))
-
-                    //======================TokenValidationParametersµÄ²ÎÊıÄ¬ÈÏÖµ=======================
-                    RequireSignedTokens = true,
-                    SaveSigninToken = false,
-                    ValidateActor = false,
-                    //½«ÏÂÃæÁ½¸ö²ÎÊıÉèÖÃÎªfalse£¬¿ÉÒÔ²»ÑéÖ¤IssuerºÍAudience£¬µ«ÊÇ²»½¨ÒéÕâÑù×ö¡£
-                    //Token°ä·¢»ú¹¹
+                    //è§£å¯†çš„å¯†é’¥ Â  Â  Â  Â  Â  Â 
                     ValidateIssuer = true,
-                    //ÊÇ·ñÑéÖ¤Issuer Token·¢²¼Õß
+                    //æ˜¯å¦éªŒè¯å‘è¡Œäººï¼Œå°±æ˜¯éªŒè¯è½½è·ä¸­çš„Issæ˜¯å¦å¯¹åº”ValidIssuerå‚æ•° Â  Â  Â  Â  Â  Â 
                     ValidIssuer = jwtTokenConfig.Issuer,
-                    //Token°ä·¢¸øË­
-                    ValidateAudience = true,
-                    //ÊÇ·ñÑéÖ¤Audience oken½ÓÊÜÕß
-                    ValidAudience = jwtTokenConfig.Audience,
-                    //ÑéÖ¤ÃØÔ¿ÊÇ·ñÓĞĞ§
                     ValidateIssuerSigningKey = true,
+                    //æ˜¯å¦éªŒè¯ç­¾å,ä¸éªŒè¯çš„ç”»å¯ä»¥ç¯¡æ”¹æ•°æ®ï¼Œä¸å®‰å…¨Â åœ¨Configureæ–¹æ³•æ·»åŠ è®¤è¯æ–¹æ³• Â Â 4ã€ç”ŸæˆJwtçš„Tokenä»¤ç‰Œ  Â  Â  Â  Â  Â 
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtTokenConfig.IssuerSigningKey)),
-                    // ÊÇ·ñÒªÇóTokenµÄClaimsÖĞ±ØĞë°üº¬Expires
+                    //å‘è¡Œäºº Â  Â  Â  Â  Â  Â 
+                    ValidateAudience = true,
+                    //æ˜¯å¦éªŒè¯è®¢é˜…äººï¼Œå°±æ˜¯éªŒè¯è½½è·ä¸­çš„Audæ˜¯å¦å¯¹åº”ValidAudienceå‚æ•° Â  Â  Â  Â  Â  Â 
+                    ValidAudience = jwtTokenConfig.Audience,
+                    //è®¢é˜…äºº Â 
+                    // æ˜¯å¦éªŒè¯Tokenæœ‰æ•ˆæœŸï¼Œä½¿ç”¨å½“å‰æ—¶é—´ä¸Tokençš„Claimsä¸­çš„NotBeforeå’ŒExpireså¯¹æ¯”Â  Â  Â  Â  Â 
+                    ValidateLifetime = true,
+                    //æ˜¯å¦éªŒè¯è¿‡æœŸæ—¶é—´ï¼Œè¿‡æœŸäº†å°±æ‹’ç»è®¿é—® Â  Â  Â  Â  Â  Â 
+                    //è¿™ä¸ªæ˜¯ç¼“å†²è¿‡æœŸæ—¶é—´ï¼Œä¹Ÿå°±æ˜¯è¯´ï¼Œå³ä½¿æˆ‘ä»¬é…ç½®äº†è¿‡æœŸæ—¶é—´ï¼Œè¿™é‡Œä¹Ÿè¦è€ƒè™‘è¿›å»ï¼Œè¿‡æœŸæ—¶é—´+ç¼“å†²ï¼Œé»˜è®¤å¥½åƒæ˜¯7åˆ†é’Ÿï¼Œä½ å¯ä»¥ç›´æ¥è®¾ç½®ä¸º0 Â  Â  Â  Â  Â  Â 
                     RequireExpirationTime = true,
-                    // ÔÊĞíµÄ·şÎñÆ÷Ê±¼äÆ«ÒÆÁ¿,¶Ôtoken¹ıÆÚÊ±¼äÑéÖ¤µÄÔÊĞíÊ±¼ä
-                    ClockSkew = TimeSpan.FromMinutes(300),
-                    // ÊÇ·ñÑéÖ¤TokenÓĞĞ§ÆÚ£¬Ê¹ÓÃµ±Ç°Ê±¼äÓëTokenµÄClaimsÖĞµÄNotBeforeºÍExpires¶Ô±È
-                    ValidateLifetime = true
+                    ClockSkew = TimeSpan.FromMinutes(1)  //å¯¹tokenè¿‡æœŸæ—¶é—´éªŒè¯çš„å…è®¸æ—¶é—´
                 };
+                
             });
             #endregion
 
-            #region ¿çÓò
-            //Ìí¼Ócors ·şÎñ ÅäÖÃ¿çÓòÀ´´¦Àí
+            #region è·¨åŸŸ
+            //æ·»åŠ cors æœåŠ¡ é…ç½®è·¨åŸŸæ¥å¤„ç†
             services.AddCors(options => options.AddPolicy("cor",
-            builder=>
+            builder =>
             {
                 builder.AllowAnyMethod()
                 .AllowAnyHeader()
@@ -201,20 +193,22 @@ namespace TMS.API
                 .AllowCredentials();
             }));
             #endregion
-
-
         }
-
         /// <summary>
-        /// Ê¹ÓÃ´Ë·½·¨ÅäÖÃHTTPÇëÇó¹ÜµÀ¡£
+        /// ä½¿ç”¨æ­¤æ–¹æ³•é…ç½®HTTPè¯·æ±‚ç®¡é“ã€‚
         /// </summary>
-        /// <param name="app">IApplicationBuilder ¶¨ÒåÓÃÓÚÅäÖÃÓ¦ÓÃÇëÇó¹ÜµÀµÄÀà£¬ASP.NET Core ÇëÇó¹ÜµÀ°üº¬Ò»ÏµÁĞÇëÇóÎ¯ÍĞ£¬ÒÀ´Îµ÷ÓÃ¡£</param>
+        /// <param name="app">IApplicationBuilder å®šä¹‰ç”¨äºé…ç½®åº”ç”¨è¯·æ±‚ç®¡é“çš„ç±»ï¼ŒASP.NET Core è¯·æ±‚ç®¡é“åŒ…å«ä¸€ç³»åˆ—è¯·æ±‚å§”æ‰˜ï¼Œä¾æ¬¡è°ƒç”¨ã€‚</param>
         /// <param name="env"></param>
         /// <param name="loggerFactory"></param>
         [Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            #region ÅäÖÃHTTPÇëÇó¹ÜµÀ
+            #region JWTéªŒè¯
+            app.UseAuthentication(); //è¿™ä¸ªæ˜¯æ·»åŠ è®¤è¯çš„
+            app.UseAuthorization(); //è¿™ä¸ªæ˜¯æ–¹æ³•é‡Œè‡ªå¸¦çš„æˆæƒ
+            #endregion
+
+            #region é…ç½®HTTPè¯·æ±‚ç®¡é“
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -226,8 +220,8 @@ namespace TMS.API
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();//Ìí¼ÓÖĞ¼ä¼ş£¬ÔÊĞíÓ¦ÓÃ³ÌĞòÌá¹©¾²Ì¬×ÊÔ´¡£
-            //ÇëÇó¿ÉÒÔÍ¨¹ıÈçÏÂÅäÖÃ¾²Ì¬ÎÄ¼şÖĞ¼ä¼şÀ´·ÃÎÊ×Ô¶¨ÒåµÄ¾²Ì¬×ÊÔ´£º
+            app.UseStaticFiles();//æ·»åŠ ä¸­é—´ä»¶ï¼Œå…è®¸åº”ç”¨ç¨‹åºæä¾›é™æ€èµ„æºã€‚
+            //è¯·æ±‚å¯ä»¥é€šè¿‡å¦‚ä¸‹é…ç½®é™æ€æ–‡ä»¶ä¸­é—´ä»¶æ¥è®¿é—®è‡ªå®šä¹‰çš„é™æ€èµ„æºï¼š
             //app.UseStaticFiles(new StaticFileOptions
             //{
             //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ProjectStaticFile")),
@@ -246,26 +240,26 @@ namespace TMS.API
             });
             #endregion
 
-            #region ÈÕÖ¾ÅäÖÃ
-            //Ìí¼ÓNLog
+            #region æ—¥å¿—é…ç½®
+            //æ·»åŠ NLog
             loggerFactory.AddNLog();
-            //¼ÓÔØÅäÖÃ
+            //åŠ è½½é…ç½®
             NLog.LogManager.LoadConfiguration("NLog.config");
-            //µ÷ÓÃ×Ô¶¨ÒåµÄÖĞ¼ä¼ş
+            //è°ƒç”¨è‡ªå®šä¹‰çš„ä¸­é—´ä»¶
             app.UseLog();
 
-            //µÚ¶şÖÖ·½·¨
-            //Log4NetÈÕÖ¾ÅäÖÃ¡ªÖĞ¼ä¼ş´óÍ¬Ğ¡Òì
+            //ç¬¬äºŒç§æ–¹æ³•
+            //Log4Netæ—¥å¿—é…ç½®â€”ä¸­é—´ä»¶å¤§åŒå°å¼‚
             //loggerFactory.AddLog4Net(Path.Combine(Directory.GetCurrentDirectory(), "log4net.config"));
             #endregion
 
-            #region Swagger »·¾³
+            #region Swagger ç¯å¢ƒ
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //ÆôÓÃÖĞ¼ä¼ş·şÎñÉú³ÉSwagger×÷ÎªJSONÖÕ½áµã
+                //å¯ç”¨ä¸­é—´ä»¶æœåŠ¡ç”ŸæˆSwaggerä½œä¸ºJSONç»ˆç»“ç‚¹
                 app.UseSwagger();
-                //ÇëÓÃÖĞ¼ä¼ş·şÎñ¶ÔSwagger-UI£¬Ö¸¶¨Swagger JSONÖÕ½áµã
+                //è¯·ç”¨ä¸­é—´ä»¶æœåŠ¡å¯¹Swagger-UIï¼ŒæŒ‡å®šSwagger JSONç»ˆç»“ç‚¹
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "TMS.API v1");
@@ -273,8 +267,8 @@ namespace TMS.API
             }
             #endregion
 
-            #region Ê¹ÓÃ×¢ÈëÄÚÈİ
-            //ÅäÖÃCors¿çÓò
+            #region ä½¿ç”¨æ³¨å…¥å†…å®¹
+            //é…ç½®Corsè·¨åŸŸ
             app.UseCors("cor");
 
             app.UseEndpoints(endpoints =>
@@ -283,41 +277,41 @@ namespace TMS.API
             });
             #endregion
 
-            #region Ìí¼ÓÖĞ¼ä¼ş×é¼ş
+            #region æ·»åŠ ä¸­é—´ä»¶ç»„ä»¶
             if (env.IsDevelopment())
             {
-                //¿ª·¢ÈËÔ±Òì³£Ò³ÖĞ¼ä¼ş (UseDeveloperExceptionPage) ±¨¸æÓ¦ÓÃÔËĞĞÊ±´íÎó£º´Ó¹ÜµÀ²¶»ñÍ¬²½ºÍÒì²½ExceptionÊµÀı£¬²¢Éú³ÉHTML´íÎóÏìÓ¦¡£
+                //å¼€å‘äººå‘˜å¼‚å¸¸é¡µä¸­é—´ä»¶ (UseDeveloperExceptionPage) æŠ¥å‘Šåº”ç”¨è¿è¡Œæ—¶é”™è¯¯ï¼šä»ç®¡é“æ•è·åŒæ­¥å’Œå¼‚æ­¥Exceptionå®ä¾‹ï¼Œå¹¶ç”ŸæˆHTMLé”™è¯¯å“åº”ã€‚
                 app.UseDeveloperExceptionPage();
                 //app.UseDatabaseErrorPage();
             }
             else
             {
-                //Òì³£´¦Àí³ÌĞòÖĞ¼ä¼ş (UseExceptionHandler) ²¶»ñÒÔÏÂÖĞ¼ä¼şÖĞÒı·¢µÄÒì³£¡£
+                //å¼‚å¸¸å¤„ç†ç¨‹åºä¸­é—´ä»¶ (UseExceptionHandler) æ•è·ä»¥ä¸‹ä¸­é—´ä»¶ä¸­å¼•å‘çš„å¼‚å¸¸ã€‚
                 app.UseExceptionHandler("/Error");
-                //HTTP ÑÏ¸ñ´«Êä°²È«Ğ­Òé (HSTS) ÖĞ¼ä¼ş (UseHsts) Ìí¼Ó Strict-Transport-Security ±êÍ·¡£
+                //HTTP ä¸¥æ ¼ä¼ è¾“å®‰å…¨åè®® (HSTS) ä¸­é—´ä»¶ (UseHsts) æ·»åŠ  Strict-Transport-Security æ ‡å¤´ã€‚
                 app.UseHsts();
             }
 
-            //HTTPS ÖØ¶¨ÏòÖĞ¼ä¼ş (UseHttpsRedirection) ½« HTTP ÇëÇóÖØ¶¨Ïòµ½ HTTPS¡£
+            //HTTPS é‡å®šå‘ä¸­é—´ä»¶ (UseHttpsRedirection) å°† HTTP è¯·æ±‚é‡å®šå‘åˆ° HTTPSã€‚
             app.UseHttpsRedirection();
-            //¾²Ì¬ÎÄ¼şÖĞ¼ä¼ş(UseStaticFiles) ·µ»Ø¾²Ì¬ÎÄ¼ş£¬²¢¼ò»¯½øÒ»²½ÇëÇó´¦Àí¡£
+            //é™æ€æ–‡ä»¶ä¸­é—´ä»¶(UseStaticFiles) è¿”å›é™æ€æ–‡ä»¶ï¼Œå¹¶ç®€åŒ–è¿›ä¸€æ­¥è¯·æ±‚å¤„ç†ã€‚
             app.UseStaticFiles();
-            //Cookie ²ßÂÔÖĞ¼ä¼ş (UseCookiePolicy) Ê¹Ó¦ÓÃ·ûºÏÅ·ÃËÒ»°ãÊı¾İ±£»¤ÌõÀı (GDPR) ¹æ¶¨¡£
+            //Cookie ç­–ç•¥ä¸­é—´ä»¶ (UseCookiePolicy) ä½¿åº”ç”¨ç¬¦åˆæ¬§ç›Ÿä¸€èˆ¬æ•°æ®ä¿æŠ¤æ¡ä¾‹ (GDPR) è§„å®šã€‚
             // app.UseCookiePolicy();
 
-            //ÓÃÓÚÂ·ÓÉÇëÇóµÄÂ·ÓÉÖĞ¼ä¼ş (UseRouting)¡£
+            //ç”¨äºè·¯ç”±è¯·æ±‚çš„è·¯ç”±ä¸­é—´ä»¶ (UseRouting)ã€‚
             app.UseRouting();
             // app.UseRequestLocalization();
             // app.UseCors();
 
-            //Éí·İÑéÖ¤ÖĞ¼ä¼ş (UseAuthentication) ³¢ÊÔ¶ÔÓÃ»§½øĞĞÉí·İÑéÖ¤£¬È»ºó²Å»áÔÊĞíÓÃ»§·ÃÎÊ°²È«×ÊÔ´¡£
+            //èº«ä»½éªŒè¯ä¸­é—´ä»¶ (UseAuthentication) å°è¯•å¯¹ç”¨æˆ·è¿›è¡Œèº«ä»½éªŒè¯ï¼Œç„¶åæ‰ä¼šå…è®¸ç”¨æˆ·è®¿é—®å®‰å…¨èµ„æºã€‚
             app.UseAuthentication();
-            //ÓÃÓÚÊÚÈ¨ÓÃ»§·ÃÎÊ°²È«×ÊÔ´µÄÊÚÈ¨ÖĞ¼ä¼ş
+            //ç”¨äºæˆæƒç”¨æˆ·è®¿é—®å®‰å…¨èµ„æºçš„æˆæƒä¸­é—´ä»¶
             app.UseAuthorization();
-            //»á»°ÖĞ¼ä¼ş (UseSession) ½¨Á¢ºÍÎ¬»¤»á»°×´Ì¬¡£ Èç¹ûÓ¦ÓÃÊ¹ÓÃ»á»°×´Ì¬£¬ÇëÔÚ Cookie ²ßÂÔÖĞ¼ä¼şÖ®ºóºÍ MVC ÖĞ¼ä¼şÖ®Ç°µ÷ÓÃ»á»°ÖĞ¼ä¼ş¡£
+            //ä¼šè¯ä¸­é—´ä»¶ (UseSession) å»ºç«‹å’Œç»´æŠ¤ä¼šè¯çŠ¶æ€ã€‚ å¦‚æœåº”ç”¨ä½¿ç”¨ä¼šè¯çŠ¶æ€ï¼Œè¯·åœ¨ Cookie ç­–ç•¥ä¸­é—´ä»¶ä¹‹åå’Œ MVC ä¸­é—´ä»¶ä¹‹å‰è°ƒç”¨ä¼šè¯ä¸­é—´ä»¶ã€‚
             // app.UseSession();
 
-            //ÓÃÓÚ½« Razor Pages ÖÕ½áµãÌí¼Óµ½ÇëÇó¹ÜµÀµÄÖÕ½áµãÂ·ÓÉÖĞ¼ä¼ş£¨´øÓĞ MapRazorPages µÄ UseEndpoints£©¡£
+            //ç”¨äºå°† Razor Pages ç»ˆç»“ç‚¹æ·»åŠ åˆ°è¯·æ±‚ç®¡é“çš„ç»ˆç»“ç‚¹è·¯ç”±ä¸­é—´ä»¶ï¼ˆå¸¦æœ‰ MapRazorPages çš„ UseEndpointsï¼‰ã€‚
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
@@ -327,41 +321,41 @@ namespace TMS.API
             });
             #endregion
 
-            #region Òì³£´¦ÀíÅäÖÃ 
-            //ÅĞ¶ÏÊÇ·ñÊÇ¿ª·¢»·¾³
+            #region å¼‚å¸¸å¤„ç†é…ç½® 
+            //åˆ¤æ–­æ˜¯å¦æ˜¯å¼€å‘ç¯å¢ƒ
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();//Ê¹ÓÃÒì³£¼ÇÂ¼Ò³Ãæ
+                app.UseDeveloperExceptionPage();//ä½¿ç”¨å¼‚å¸¸è®°å½•é¡µé¢
             }
             else
             {
-                app.UseExceptionHandler("/VehicleManagementAPI/error"); //ÔÚÉú²ú»·¾³ÏÂ£¬·¢ÉúÏµÍ³´íÎóÊ±£¬Ìø×ªµ½´íÎóÒ³Ãæ
+                app.UseExceptionHandler("/VehicleManagementAPI/error"); //åœ¨ç”Ÿäº§ç¯å¢ƒä¸‹ï¼Œå‘ç”Ÿç³»ç»Ÿé”™è¯¯æ—¶ï¼Œè·³è½¬åˆ°é”™è¯¯é¡µé¢
             }
-            //UseStatusCodePages()Ö§³Ö¶àÖÖÀ©Õ¹·½·¨¡£ÆäÖĞÒ»¸ö·½·¨½ÓÊÜÒ»¸ölambda±í´ïÊ½:
+            //UseStatusCodePages()æ”¯æŒå¤šç§æ‰©å±•æ–¹æ³•ã€‚å…¶ä¸­ä¸€ä¸ªæ–¹æ³•æ¥å—ä¸€ä¸ªlambdaè¡¨è¾¾å¼:
             app.UseStatusCodePages(async context => {
                 context.HttpContext.Response.ContentType = "text/plain";
                 await context.HttpContext.Response.WriteAsync(
                     "Status code page,status code:" + context.HttpContext.Response.StatusCode);
-            });//Ê¹ÓÃHTTP´íÎó´úÂëÒ³
+            });//ä½¿ç”¨HTTPé”™è¯¯ä»£ç é¡µ
             #endregion
         }
 
-        #region Ê¹ÓÃAutoFac ÒÀÀµ×¢Èë
-        //ConfigureContainerÊÇÄú¿ÉÒÔÖ±½Ó×¢²áµÄµØ·½
+        #region ä½¿ç”¨AutoFac ä¾èµ–æ³¨å…¥
+        //ConfigureContaineræ˜¯æ‚¨å¯ä»¥ç›´æ¥æ³¨å†Œçš„åœ°æ–¹
 
-        //Ê¹ÓÃAutoFac£¬ËûÔÚConfigureServicesÖ®ºóÔËĞĞ£¬Òò´Ë
+        //ä½¿ç”¨AutoFacï¼Œä»–åœ¨ConfigureServicesä¹‹åè¿è¡Œï¼Œå› æ­¤
 
-        //´Ë´¦½«¸²¸ÇÔÚConfigureServicesÖĞ½øĞĞµÄ×¢²á¡£
+        //æ­¤å¤„å°†è¦†ç›–åœ¨ConfigureServicesä¸­è¿›è¡Œçš„æ³¨å†Œã€‚
 
-        //²»Òª½¨ÔìÈİÆ÷£º¹¤³§»á°ïÄãÍê³ÉµÄ¡£
+        //ä¸è¦å»ºé€ å®¹å™¨ï¼šå·¥å‚ä¼šå¸®ä½ å®Œæˆçš„ã€‚
         /// <summary>
-        /// ConfigureContainerÊÇÄú¿ÉÒÔÖ±½Ó×¢²áµÄµØ·½
+        /// ConfigureContaineræ˜¯æ‚¨å¯ä»¥ç›´æ¥æ³¨å†Œçš„åœ°æ–¹
         /// </summary>
         /// <param name="builder"></param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            //ÔÚÕâÀïÖ±½ÓÏòAutoFac×¢²áÄú×Ô¼ºµÄ¶«Î÷£¬²»Òª
-            //µ÷ÓÃbuilder.Populate(),Õâ·¢ÉúÔÚAutofacServiceProviderFactoryÖĞ
+            //åœ¨è¿™é‡Œç›´æ¥å‘AutoFacæ³¨å†Œæ‚¨è‡ªå·±çš„ä¸œè¥¿ï¼Œä¸è¦
+            //è°ƒç”¨builder.Populate(),è¿™å‘ç”Ÿåœ¨AutofacServiceProviderFactoryä¸­
             builder.RegisterAssemblyTypes(typeof(UserRepository).Assembly)
                 .Where(x => x.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces();

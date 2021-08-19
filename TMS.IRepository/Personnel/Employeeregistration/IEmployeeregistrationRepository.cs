@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMS.Model.Entity;
 using TMS.Model.ViewModel;
 
 namespace TMS.IRepository.Personnel
@@ -19,5 +20,12 @@ namespace TMS.IRepository.Personnel
         /// <param name="EmpType"></param>
         /// <returns></returns>
         List<EmployeeRegistration> GetEmployeeRegistrations(string EmpName, int EmpDeparName, int PosterName, string EmpPhone, int EmpType);
+
+        /// <summary>
+        /// 人事模块—员工登记—添加
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
+        bool AddEmployeeRegistrations(UserModel userModel);
     }
 }

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using TMS.Model.Entity;
 using TMS.Service.User;
 using TMS.Common.MD5Helper;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Configuration;
+using System.Text;
+using System.Security.Claims;
 
 namespace TMS.API.Controllers.User
 {

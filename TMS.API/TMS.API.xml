@@ -150,6 +150,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:TMS.API.Controllers.Personnel.Employeeregistration.EmployeeregistrationAPIController.AddEmployeeRegistrations(TMS.Model.Entity.UserModel)">
+            <summary>
+            人事模块—员工登记—添加API
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.User.UserAPIController">
             <summary>
             用户API
