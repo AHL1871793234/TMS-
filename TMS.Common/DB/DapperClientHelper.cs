@@ -57,6 +57,34 @@ namespace TMS.Common.DB
         }
 
         /// <summary>
+        /// 执行SQL返回一个对象异步
+        /// </summary>
+        /// <param name="strSql">SQL语句</param>
+        /// <returns></returns>
+        public virtual async Task<T> QueryFirstAsync<T>(string strSql, object param)
+        {
+            using (IDbConnection conn = Connection)
+            {
+                var res = await conn.QueryAsync<T>(strSql, param);
+                return res.FirstOrDefault<T>();
+            }
+        }
+
+        /// <summary>
+        /// 显示集合异步
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <returns></returns>
+        public virtual async Task<List<T>> QueryAsync<T>(string strSql)
+        {
+            using (IDbConnection conn = Connection)
+            {
+                var data = await conn.QueryAsync<T>(strSql, null);
+                return data.ToList();
+            }
+        }
+
+        /// <summary>
         /// 执行SQL返回集合
         /// </summary>
         /// <param name="strSql">sql语句</param>
@@ -112,6 +140,21 @@ namespace TMS.Common.DB
         }
 
         /// <summary>
+        /// 执行SQL返回集合异步
+        /// </summary>
+        /// <param name="strSql">SQL语句</param>
+        /// <param name="obj">参数model</param>
+        /// <returns></returns>
+        public virtual async Task<List<T>> QueryAsync<T>(string strSql, object param)
+        {
+            using (IDbConnection conn = Connection)
+            {
+                var data = await conn.QueryAsync<T>(strSql, param);
+                return data.ToList();
+            }
+        }
+
+        /// <summary>
         /// 执行SQL返回一个对象
         /// </summary>
         /// <param name="strSql">SQL语句</param>
@@ -122,6 +165,28 @@ namespace TMS.Common.DB
             {
                 var res = await conn.QueryAsync<T>(strSql);
                 return res.FirstOrDefault<T>();
+            }
+        }
+
+        /// <summary>
+        /// 执行SQL
+        /// </summary>
+        /// <param name="strSql">SQL语句</param>
+        /// <param name="param">参数</param>
+        /// <returns>0成功，-1执行失败</returns>
+        public virtual async Task<int> ExecuteAsync(string strSql, object param)
+        {
+            using (IDbConnection conn = Connection)
+            {
+                try
+                {
+                    var data = await conn.ExecuteAsync(strSql, param) > 0 ? 0 : -1;
+                    return data;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 

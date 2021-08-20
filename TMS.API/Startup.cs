@@ -29,6 +29,7 @@ using Autofac;
 using System;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace TMS.API
 {
@@ -95,8 +96,54 @@ namespace TMS.API
             //services.AddControllers();
             #endregion
 
+            #region JWT验证配置
+            //JWT优点
+            //通用：因为json的通用性，所以JWT是可以进行跨语言支持的，像JAVA,JavaScript,NodeJS,PHP等很多语言都可以使用。
+            //紧凑：JWT的构成非常简单，字节占用很小，可以通过 GET、POST 等放在 HTTP 的 header 中，非常便于传输。
+            //扩展：JWT是自我包涵的，包含了必要的所有信息，不需要在服务端保存会话信息, 非常易于应用的扩展。
+
+            //获取JWT配置
+            var jwtTokenConfig = Configuration.GetSection("JWTConfig").Get<JwtTokenConfig>();
+            services.AddSingleton(jwtTokenConfig);
+            
+            //注册JwtTokenConfig配置服务
+            services.Configure<JwtTokenConfig>(Configuration.GetSection("JWTConfig"));
+            services.AddTransient<ITokenHelper, TokenHelper>();
+            //配置身份认证服务 认证参数
+            services.AddAuthentication(opts =>
+            {
+                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;//认证模式
+                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;//质询模式
+            })
+            .AddJwtBearer(x =>
+            {
+                //对JwtBearer进行配置
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    //Token验证参数         
+                    ValidateIssuer = true,//是否验证Issuer
+                    //是否验证发行人，就是验证载荷中的Iss是否对应ValidIssuer参数            
+                    ValidIssuer = jwtTokenConfig.Issuer,
+                    ValidateIssuerSigningKey = true,
+                    //是否验证签名,不验证的画可以篡改数据，不安全 在Configure方法添加认证方法   4、生成Jwt的Token令牌           
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtTokenConfig.IssuerSigningKey)),
+                    //发行人            
+                    ValidateAudience = true,
+                    //是否验证订阅人，就是验证载荷中的Aud是否对应ValidAudience参数            
+                    ValidAudience = jwtTokenConfig.Audience,
+                    //订阅人  
+                    // 是否验证Token有效期，使用当前时间与Token的Claims中的NotBefore和Expires对比         
+                    ValidateLifetime = true,
+                    //是否验证过期时间，过期了就拒绝访问            
+                    //这个是缓冲过期时间，也就是说，即使我们配置了过期时间，这里也要考虑进去，过期时间+缓冲，默认好像是7分钟，你可以直接设置为0            
+                    ClockSkew = TimeSpan.FromMinutes(1)  //对token过期时间验证的允许时间
+                };
+            });
+            #endregion
+
             #region Swagger(斯瓦格)验证及配置
-            services.AddControllers();
             //ASP.NET Core MVC 的兼容性版本配置
             //CompatibilityVersion 值 Version_2_0 到 Version_2_2 被标记为[Obsolete(...)]。
             //对于 ASP.NET Core 3.0，已删除兼容性开关支持的旧行为
@@ -123,62 +170,47 @@ namespace TMS.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 //API控制器层注释，true表示显示控制器注释
                 c.IncludeXmlComments(xmlPath, true);
-            });
-            #endregion
 
-            #region JWT验证配置
-            //JWT优点
-            //通用：因为json的通用性，所以JWT是可以进行跨语言支持的，像JAVA,JavaScript,NodeJS,PHP等很多语言都可以使用。
-            //紧凑：JWT的构成非常简单，字节占用很小，可以通过 GET、POST 等放在 HTTP 的 header 中，非常便于传输。
-            //扩展：JWT是自我包涵的，包含了必要的所有信息，不需要在服务端保存会话信息, 非常易于应用的扩展。
-
-            //获取JWT配置
-            var jwtTokenConfig = Configuration.GetSection("JWTConfig").Get<JwtTokenConfig>();
-            services.AddSingleton(jwtTokenConfig);
-            
-            //注册JwtTokenConfig配置服务
-            services.Configure<JwtTokenConfig>(Configuration.GetSection("JWTConfig"));
-            services.AddTransient<ITokenHelper, TokenHelper>();
-            //权重：
-            //依赖服务生命周期
-            //AddTransient 请求获取-（GC回收-主动释放） 每一次获取的对象都不是同一个
-            //AddSingleton项目启动-项目关闭 相当于静态类 只会有一个
-            //AddScoped请求开始-请求结束  在这次请求中获取的对象都是同一个 
-            services.AddTransient<ITokenHelper, TokenHelper>();
-
-            //配置身份认证服务 认证参数
-            services.AddAuthentication(opts =>
-            {
-                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;//认证模式
-                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;//质询模式
-            })
-            .AddJwtBearer(x =>
-            {
-                //对JwtBearer进行配置
-                x.RequireHttpsMetadata = true;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    //解密的密钥            
-                    ValidateIssuer = true,
-                    //是否验证发行人，就是验证载荷中的Iss是否对应ValidIssuer参数            
-                    ValidIssuer = jwtTokenConfig.Issuer,
-                    ValidateIssuerSigningKey = true,
-                    //是否验证签名,不验证的画可以篡改数据，不安全 在Configure方法添加认证方法   4、生成Jwt的Token令牌           
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtTokenConfig.IssuerSigningKey)),
-                    //发行人            
-                    ValidateAudience = true,
-                    //是否验证订阅人，就是验证载荷中的Aud是否对应ValidAudience参数            
-                    ValidAudience = jwtTokenConfig.Audience,
-                    //订阅人  
-                    // 是否验证Token有效期，使用当前时间与Token的Claims中的NotBefore和Expires对比         
-                    ValidateLifetime = true,
-                    //是否验证过期时间，过期了就拒绝访问            
-                    //这个是缓冲过期时间，也就是说，即使我们配置了过期时间，这里也要考虑进去，过期时间+缓冲，默认好像是7分钟，你可以直接设置为0            
-                    RequireExpirationTime = true,
-                    ClockSkew = TimeSpan.FromMinutes(1)  //对token过期时间验证的允许时间
-                };
+                //开启权限小锁
+                c.OperationFilter<AddResponseHeadersFilter>();
+                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                //在header中添加token，传递到后台
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
                 
+                //开启Authorize权限按钮
+                c.AddSecurityDefinition("JWTBearer", new OpenApiSecurityScheme()
+                {
+                    Description = "这是方式一(直接在输入框中输入认证信息，不需要在开头添加Bearer) ",
+                    Name = "Authorization",         //jwt默认的参数名称
+                    In = ParameterLocation.Header,  //jwt默认存放Authorization信息的位置(请求头中)
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer"
+                });
+
+                //定义JwtBearer认证方式二
+                //options.AddSecurityDefinition("JwtBearer", new OpenApiSecurityScheme()
+                //{
+                //    Description = "这是方式二(JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）)",
+                //    Name = "Authorization",//jwt默认的参数名称
+                //    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
+                //    Type = SecuritySchemeType.ApiKey
+                //});
+
+                //声明一个Scheme，注意下面的Id要和上面AddSecurityDefinition中的参数name一致
+                var scheme = new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference()
+                    {
+                        Id = "JWTBearer",   //这个名字与上面的一样
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                //注册全局认证（所有的接口都可以使用认证）
+                //c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                //{
+                //    { scheme, Array.Empty<string>() }
+                //});
+
             });
             #endregion
 
@@ -203,10 +235,6 @@ namespace TMS.API
         [Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            #region JWT验证
-            app.UseAuthentication(); //这个是添加认证的
-            app.UseAuthorization(); //这个是方法里自带的授权
-            #endregion
 
             #region 配置HTTP请求管道
             if (env.IsDevelopment())
@@ -219,21 +247,22 @@ namespace TMS.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //HTTPS 重定向中间件 (UseHttpsRedirection) 将 HTTP 请求重定向到 HTTPS。
             app.UseHttpsRedirection();
-            app.UseStaticFiles();//添加中间件，允许应用程序提供静态资源。
-            //请求可以通过如下配置静态文件中间件来访问自定义的静态资源：
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ProjectStaticFile")),
-            //    RequestPath = "/StaticFiles"
-            //});
-
+            //静态文件中间件(UseStaticFiles) 返回静态文件，并简化进一步请求处理。
+            app.UseStaticFiles();
+            //用于路由请求的路由中间件 (UseRouting)。
             app.UseRouting();
-
+            //身份验证中间件 (UseAuthentication) 尝试对用户进行身份验证，然后才会允许用户访问安全资源。
+            app.UseAuthentication();
+            //用于授权用户访问安全资源的授权中间件
             app.UseAuthorization();
+            //配置Cors跨域
+            app.UseCors("cor");
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -267,16 +296,6 @@ namespace TMS.API
             }
             #endregion
 
-            #region 使用注入内容
-            //配置Cors跨域
-            app.UseCors("cor");
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-            #endregion
-
             #region 添加中间件组件
             if (env.IsDevelopment())
             {
@@ -291,34 +310,6 @@ namespace TMS.API
                 //HTTP 严格传输安全协议 (HSTS) 中间件 (UseHsts) 添加 Strict-Transport-Security 标头。
                 app.UseHsts();
             }
-
-            //HTTPS 重定向中间件 (UseHttpsRedirection) 将 HTTP 请求重定向到 HTTPS。
-            app.UseHttpsRedirection();
-            //静态文件中间件(UseStaticFiles) 返回静态文件，并简化进一步请求处理。
-            app.UseStaticFiles();
-            //Cookie 策略中间件 (UseCookiePolicy) 使应用符合欧盟一般数据保护条例 (GDPR) 规定。
-            // app.UseCookiePolicy();
-
-            //用于路由请求的路由中间件 (UseRouting)。
-            app.UseRouting();
-            // app.UseRequestLocalization();
-            // app.UseCors();
-
-            //身份验证中间件 (UseAuthentication) 尝试对用户进行身份验证，然后才会允许用户访问安全资源。
-            app.UseAuthentication();
-            //用于授权用户访问安全资源的授权中间件
-            app.UseAuthorization();
-            //会话中间件 (UseSession) 建立和维护会话状态。 如果应用使用会话状态，请在 Cookie 策略中间件之后和 MVC 中间件之前调用会话中间件。
-            // app.UseSession();
-
-            //用于将 Razor Pages 终结点添加到请求管道的终结点路由中间件（带有 MapRazorPages 的 UseEndpoints）。
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
             #endregion
 
             #region 异常处理配置 

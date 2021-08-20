@@ -4,6 +4,155 @@
         <name>TMS.API</name>
     </assembly>
     <members>
+        <member name="T:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController">
+            <summary>
+            基本信息-外协单位管理API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.#ctor(TMS.Service.BasicInformation.IOutsourcingUnitService)">
+            <summary>
+            注入
+            </summary>
+            <param name="outsourcingUnit"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.GetOutsourcingUnits(System.String,System.String)">
+            <summary>
+            外协单位显示
+            </summary>
+            <param name="name">外协单位名称查询</param>
+            <param name="phone">外协单位手机号查询</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.AddOutsourcingUnit(TMS.Model.Entity.OutsourcingUnit)">
+            <summary>
+            添加外协单位
+            </summary>
+            <param name="model">信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.DelOutsourcingUnit(System.String)">
+            <summary>
+            删除外协单位
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.EditOutsourcingUnit(System.Int32)">
+            <summary>
+            反填外协单位
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.UpdOutsourcingUnit(TMS.Model.Entity.OutsourcingUnit)">
+            <summary>
+            修改外协单位
+            </summary>
+            <param name="model">信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController">
+            <summary>
+            基本信息-货主管理API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.#ctor(TMS.Service.BasicInformation.IOwnerOfCargoService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="owner"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.GetOwnerOfCargosAsync(System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            显示货主管理
+            </summary>
+            <param name="ownerName">货主名称</param>
+            <param name="ownerPhone">货主电话</param>
+            <param name="dateTime">驾驶证有效日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.AddOwnerAsync(TMS.Model.Entity.OwnerOfCargo)">
+            <summary>
+            添加货主
+            </summary>
+            <param name="model">货主信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.UpLoadDrivingLicenceTime">
+            <summary>
+            上传图片车辆照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.DelOwnerAsync(System.String)">
+            <summary>
+            删除货主信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.EditOwnerAsync(System.Int32)">
+            <summary>
+            反填货主信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.UpdOwnerAsync(TMS.Model.Entity.OwnerOfCargo)">
+            <summary>
+            修改货主管理
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController">
+            <summary>
+            基本信息-油费API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController.#ctor(TMS.Service.BasicInformation.ThePostageManagement.IPostageAdministrationService)">
+            <summary>
+            注入
+            </summary>
+            <param name="postage"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController.GetPostages(System.String,System.String)">
+            <summary>
+            显示油费信息
+            </summary>
+            <param name="carNum">车牌号</param>
+            <param name="operatorName">经办人</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController.AddPostage(TMS.Model.Entity.BasicInformation.PostageAdministration)">
+            <summary>
+            添加油费信息
+            </summary>
+            <param name="model">信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController.DelPostage(System.String)">
+            <summary>
+            删除油费信息
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController.EditPostage(System.Int32)">
+            <summary>
+            反填油费信息
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.PostageAdministrationAPIController.UpdPostage(TMS.Model.Entity.BasicInformation.PostageAdministration)">
+            <summary>
+            修改油费信息
+            </summary>
+            <param name="model">信息</param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.BasicInformation.VehicleManagementAPIController">
             <summary>
             车辆管理API
@@ -157,6 +306,80 @@
             <param name="userModel"></param>
             <returns></returns>
         </member>
+        <member name="T:TMS.API.Controllers.User.DepartmentAPIController">
+            <summary>
+            系统管理-部门API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.User.DepartmentAPIController.#ctor(TMS.Service.User.IDepartmentService)">
+            <summary>
+            注入
+            </summary>
+            <param name="department"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.User.DepartmentAPIController.GetDepartmentsAsync(System.String)">
+            <summary>
+            部门信息显示
+            </summary>
+            <param name="depName">部门名称查询</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.User.MenuAPIController">
+            <summary>
+            系统管理-菜单API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.User.MenuAPIController.#ctor(TMS.Service.User.Menu.IMenuService)">
+            <summary>
+            菜单注入
+            </summary>
+            <param name="menuService"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.User.MenuAPIController.GetMenusAsync">
+            <summary>
+            根据用户Id显示菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.User.MenuAPIController.TreeAsync">
+            <summary>
+            Tree菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.User.MenuAPIController.Menu_ID(System.Int32)">
+            <summary>
+            根据角色Id获取该角色的所有菜单Id
+            </summary>
+            <param name="roleID">角色ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.User.MenuAPIController.AddRoleMenu(System.Int32,System.String)">
+            <summary>
+            分配权限
+            </summary>
+            <param name="roleId">要分配的角色Id</param>
+            <param name="intList">权限菜单Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.User.RoleAPIController">
+            <summary>
+            系统管理-角色API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.User.RoleAPIController.#ctor(TMS.Service.User.Role.IRoleService)">
+            <summary>
+            角色注入
+            </summary>
+            <param name="roleService"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.User.RoleAPIController.GetRolesAsync(System.String)">
+            <summary>
+            角色信息显示
+            </summary>
+            <param name="roleName">角色名称查询</param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.User.UserAPIController">
             <summary>
             用户API
@@ -165,11 +388,17 @@
         <member name="F:TMS.API.Controllers.User.UserAPIController._userService">
             用户服务
         </member>
-        <member name="M:TMS.API.Controllers.User.UserAPIController.#ctor(TMS.Service.User.IUserService)">
+        <member name="F:TMS.API.Controllers.User.UserAPIController._tokenHelper">
+             <summary>
+            Token启动服务
+             </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.User.UserAPIController.#ctor(TMS.Service.User.IUserService,TMS.Common.Jwt.ITokenHelper)">
             <summary>
             构造函数进行注入
             </summary>
             <param name="userService"></param>
+            <param name="tokenHelper"></param>
         </member>
         <member name="M:TMS.API.Controllers.User.UserAPIController.GetLogin(System.String,System.String)">
             <summary>

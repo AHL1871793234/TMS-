@@ -11,6 +11,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Configuration;
 using System.Text;
 using System.Security.Claims;
+using TMS.Common.Jwt;
+using TMS.Model.ViewModel;
 
 namespace TMS.API.Controllers.User
 {
@@ -23,14 +25,20 @@ namespace TMS.API.Controllers.User
     {
         ///用户服务
         public readonly IUserService _userService;
+        /// <summary>
+        ///Token启动服务
+        /// </summary>
+        public readonly ITokenHelper _tokenHelper;
 
         /// <summary>
         /// 构造函数进行注入
         /// </summary>
         /// <param name="userService"></param>
-        public UserAPIController(IUserService userService)
+        /// <param name="tokenHelper"></param>
+        public UserAPIController(IUserService userService,ITokenHelper tokenHelper)
         {
             _userService = userService;
+            _tokenHelper = tokenHelper;
         }
 
         /// <summary>
@@ -52,8 +60,14 @@ namespace TMS.API.Controllers.User
                 //判断用户名或密码是否为空
                 if (userLogin != null)
                 {
+                    UserRoleMenuViewModel.UserId = userLogin.UserID;//获取当前登录的用户Id
+                    Dictionary<string, string> keyValuePairs = new Dictionary<string, string>
+                    {
+                        { "LoginName", userName },
+                    };
+                    TnToken tnToken = _tokenHelper.CreateToken(keyValuePairs);
                     //返回对应状态值
-                    return Ok(new { code = true, meta = 200, msg = "登录成功" });
+                    return Ok(new { code = true, meta = 200, msg = "登录成功",name= userLogin.UserName, token = tnToken });
                 }
                 else
                 {

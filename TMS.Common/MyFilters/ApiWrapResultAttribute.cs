@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace TMS.Common.MyFilters
 {
@@ -36,11 +35,11 @@ namespace TMS.Common.MyFilters
                 JsonResult newresult;
                 if (context.Result is ObjectResult)
                 {
-                    newresult = new JsonResult(new { code = 200, msg = "成功", data = result.Value });
+                    newresult = new JsonResult(new { code = 200, msg = "成功", body = result.Value });
                 }
                 else if (context.Result is EmptyResult)
                 {
-                    newresult = new JsonResult(new { code = 200, msg = "失败", data = new { } });
+                    newresult = new JsonResult(new { code = 500, msg = "失败", body = new { } });
                 }
                 else
                 {

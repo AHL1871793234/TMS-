@@ -11,6 +11,7 @@ using TMS.Service.CarRegistration;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TMS.API.Controllers.BasicInformation
 {
@@ -19,6 +20,7 @@ namespace TMS.API.Controllers.BasicInformation
     /// </summary>
     [Route("VehicleManagementAPI")]
     [ApiController]
+    [Authorize]
     public class VehicleManagementAPIController : Controller
     {
         /// <summary>
