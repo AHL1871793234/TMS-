@@ -20,7 +20,7 @@ namespace TMS.API.Controllers.BasicInformation
     /// </summary>
     [Route("VehicleManagementAPI")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class VehicleManagementAPIController : Controller
     {
         /// <summary>
@@ -127,7 +127,7 @@ namespace TMS.API.Controllers.BasicInformation
         /// <param name="id"></param>
         /// <returns></returns>
         [Route(nameof(DeleteCar))]
-        [HttpPost]
+        [HttpDelete]
         public IActionResult DeleteCar(string id)
         {
             try
@@ -167,17 +167,17 @@ namespace TMS.API.Controllers.BasicInformation
                 //判断数据集是否为空
                 if (data != null)
                 {
-                    return Ok(new { code = true, meta = 200, msg = "获取相关信息成功!" });
+                    return Ok(new { code = true, meta = 200, msg = "获取相关信息成功!",body=data});
                 }
                 else
                 {
-                    return Ok(new { code = false, meta = 500, msg = "获取相关信息失败!" });
+                    return Ok(new { code = false, meta = 500, msg = "获取相关信息失败!",body="" });
                 }
             }
             //异常处理提示语
             catch (Exception)
             {
-                return Ok(new { code = false, meta = 500, msg = "数据处理异常!" });
+                return Ok(new { code = false, meta = 500, msg = "数据处理异常!", body="" });
             }
         }
 
@@ -195,16 +195,16 @@ namespace TMS.API.Controllers.BasicInformation
                 bool data = _carRegistration.UpdCar(registrationModel);
                 if (data == true)
                 {
-                    return Ok(new { data = data, mate = 200, msg = "修改成功!" });
+                    return Ok(new { data = data, mate = 200, msg = "修改成功!"});
                 }
                 else
                 {
-                    return Ok(new { data = data, mate = 200, msg = "修改失败!" });
+                    return Ok(new { data = data, mate = 200, msg = "修改失败!"});
                 }
             }
             catch (Exception)
             {
-                return Ok(new { data = false, mate = 200, msg = "修改成功!" });
+                return Ok(new { data = false, mate = 200, msg = "修改成功!"});
             }
         }
     }

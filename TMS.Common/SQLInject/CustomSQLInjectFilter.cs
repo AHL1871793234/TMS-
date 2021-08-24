@@ -6,7 +6,7 @@ using TMS.Common.Log.LogModel;
 namespace TMS.Common.SQLInject
 {
     //自定义SQL过滤器
-    public class CustomSQLInjectFilter: ActionFilterAttribute
+    public class CustomSQLInjectFilter : ActionFilterAttribute
     {
         private readonly ILogger<CustomSQLInjectFilter> _logger;
 

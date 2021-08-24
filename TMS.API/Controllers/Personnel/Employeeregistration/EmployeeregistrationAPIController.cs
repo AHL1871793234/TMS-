@@ -7,12 +7,16 @@ using TMS.Service.Personnel;
 using Microsoft.AspNetCore.Hosting;
 using TMS.Model.ViewModel;
 using TMS.Model.Entity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TMS.API.Controllers.Personnel.Employeeregistration
 {
     /// <summary>
     /// 员工登记API
     /// </summary>
+    [Route("EmployeeregistrationAPI")]
+    [ApiController]
+    //[Authorize]
     public class EmployeeregistrationAPIController : Controller
     {
         /// <summary>

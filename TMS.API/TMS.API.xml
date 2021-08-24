@@ -4,6 +4,77 @@
         <name>TMS.API</name>
     </assembly>
     <members>
+        <member name="T:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController">
+            <summary>
+            基本信息—线路API
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.#ctor(TMS.Service.ICircuitAdministrationService)">
+            <summary>
+            注入
+            </summary>
+            <param name="circuit"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.GetCircuits(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            显示线路信息
+            </summary>
+            <param name="circuitName">线路名称</param>
+            <param name="startAddress">起点</param>
+            <param name="endAddress">终点</param>
+            <param name="whether">是否是外协</param>
+            <param name="phone">货主手机号</param>
+            <param name="units">货主单位</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.AddCircuit(TMS.Model.Entity.CircuitAdministration)">
+            <summary>
+            添加线路信息
+            </summary>
+            <param name="model">信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.DelCircuit(System.String)">
+            <summary>
+            删除线路信息
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.EditCircuit(System.Int32)">
+            <summary>
+            反填线路信息
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.UpdCircuit(TMS.Model.Entity.CircuitAdministration)">
+            <summary>
+            修改线路信息
+            </summary>
+            <param name="model">信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.SmallUpd(System.Int32,System.Int32)">
+            <summary>
+            小修改
+            </summary>
+            <param name="id">ID</param>
+            <param name="status">状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.GetValue">
+            <summary>
+            抛出异常，验证异常过滤器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.Log4net">
+            <summary>
+            Log4Net测试
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController">
             <summary>
             基本信息-外协单位管理API
@@ -442,16 +513,16 @@
             Startup 类
             </summary>
         </member>
-        <member name="M:TMS.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="P:TMS.API.Startup.repository">
             <summary>
-            IConfiguration
+            定义一个repository
+            </summary>
+        </member>
+        <member name="M:TMS.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            注入
             </summary>
             <param name="configuration"></param>
-        </member>
-        <member name="P:TMS.API.Startup.Configuration">
-            <summary>
-            Configuration
-            </summary>
         </member>
         <member name="M:TMS.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
@@ -461,11 +532,10 @@
         </member>
         <member name="M:TMS.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
-            使用此方法配置HTTP请求管道。
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             </summary>
-            <param name="app">IApplicationBuilder 定义用于配置应用请求管道的类，ASP.NET Core 请求管道包含一系列请求委托，依次调用。</param>
+            <param name="app"></param>
             <param name="env"></param>
-            <param name="loggerFactory"></param>
         </member>
         <member name="M:TMS.API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>

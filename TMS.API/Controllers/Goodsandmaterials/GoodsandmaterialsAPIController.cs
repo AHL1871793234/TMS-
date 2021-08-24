@@ -7,6 +7,7 @@ using TMS.Model.Entity;
 using TMS.IRepository.Goodsandmaterials;
 using TMS.Service.Goodsandmaterials;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TMS.API.Controllers.Goodsandmaterials
 {
@@ -15,6 +16,7 @@ namespace TMS.API.Controllers.Goodsandmaterials
     /// </summary>
     [Route("GoodsandmaterialsAPI")]
     [ApiController]
+    //[Authorize]
     public class GoodsandmaterialsAPIController : Controller
     {
         /// <summary>

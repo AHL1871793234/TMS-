@@ -10,7 +10,7 @@ namespace TMS.Common.Log
     /// <summary>
     /// 
     /// </summary>
-    public class CustomExceptionFilter
+    public class CustomExceptionFilter : IAsyncExceptionFilter
     {
         //NLogHelper的接口
         private readonly INLogHelper _logHelper;

@@ -61,11 +61,13 @@ namespace TMS.API.Controllers.User
                 if (userLogin != null)
                 {
                     UserRoleMenuViewModel.UserId = userLogin.UserID;//获取当前登录的用户Id
+
                     Dictionary<string, string> keyValuePairs = new Dictionary<string, string>
                     {
                         { "LoginName", userName },
                     };
                     TnToken tnToken = _tokenHelper.CreateToken(keyValuePairs);
+
                     //返回对应状态值
                     return Ok(new { code = true, meta = 200, msg = "登录成功",name= userLogin.UserName, token = tnToken });
                 }

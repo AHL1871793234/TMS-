@@ -24,8 +24,12 @@ namespace TMS.Repository.CarRegistration
         }
 
         /// <summary>
-        /// 显示车辆管理
+        /// 车辆管理显示
         /// </summary>
+        /// <param name="factoryPlate">厂牌型号</param>
+        /// <param name="carNumber">车牌号</param>
+        /// <param name="carName">司机名称</param>
+        /// <param name="companies">所属公司</param>
         /// <returns></returns>
         public List<RegistrationModel> GetCarRegistrations(string factoryPlate, string carNumber, string carName, string companies)
         {
