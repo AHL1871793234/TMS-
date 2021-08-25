@@ -38,6 +38,8 @@ namespace TMS.API
             ILog log = LogManager.GetLogger("test");
 
             log.Debug("µ÷ÊÔÐÅÏ¢");
+
+            LogHelper.BuildLogEntity("",1,"");
             #endregion
 
         }

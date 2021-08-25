@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Common.DB;
 using TMS.IRepository.BasicInformation;
-using TMS.Model.Entity.BasicInformation;
+using TMS.Model.Entity;
 
 namespace TMS.Repository.BasicInformation
 {
@@ -67,6 +67,7 @@ namespace TMS.Repository.BasicInformation
             });
             return code == 0 ? true : false;
         }
+
 
         /// <summary>
         /// 删除货主管理
