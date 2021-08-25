@@ -27,7 +27,7 @@
             <param name="units">货主单位</param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.AddCircuit(TMS.Model.Entity.CircuitAdministration)">
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.AddCircuit(TMS.Model.Entity.BasicInformation.CircuitAdministration)">
             <summary>
             添加线路信息
             </summary>
@@ -48,7 +48,7 @@
             <param name="id">ID</param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.UpdCircuit(TMS.Model.Entity.CircuitAdministration)">
+        <member name="M:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController.UpdCircuit(TMS.Model.Entity.BasicInformation.CircuitAdministration)">
             <summary>
             修改线路信息
             </summary>
@@ -94,7 +94,7 @@
             <param name="phone">外协单位手机号查询</param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.AddOutsourcingUnit(TMS.Model.Entity.OutsourcingUnit)">
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.AddOutsourcingUnit(TMS.Model.Entity.BasicInformation.OutsourcingUnit)">
             <summary>
             添加外协单位
             </summary>
@@ -115,7 +115,7 @@
             <param name="id">ID</param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.UpdOutsourcingUnit(TMS.Model.Entity.OutsourcingUnit)">
+        <member name="M:TMS.API.Controllers.BasicInformation.OutsourcingUnitAPIController.UpdOutsourcingUnit(TMS.Model.Entity.BasicInformation.OutsourcingUnit)">
             <summary>
             修改外协单位
             </summary>
@@ -143,7 +143,7 @@
             <param name="dateTime">驾驶证有效日期</param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.AddOwnerAsync(TMS.Model.Entity.OwnerOfCargo)">
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.AddOwnerAsync(TMS.Model.Entity.BasicInformation.OwnerOfCargo)">
             <summary>
             添加货主
             </summary>
@@ -170,7 +170,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.UpdOwnerAsync(TMS.Model.Entity.OwnerOfCargo)">
+        <member name="M:TMS.API.Controllers.BasicInformation.OwnerOfCargoAPIController.UpdOwnerAsync(TMS.Model.Entity.BasicInformation.OwnerOfCargo)">
             <summary>
             修改货主管理
             </summary>
@@ -285,68 +285,6 @@
             <param name="registrationModel"></param>
             <returns></returns>
         </member>
-        <member name="T:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController">
-            <summary>
-            物资管理API
-            </summary>
-        </member>
-        <member name="F:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController._goodsandmaterials">
-            <summary>
-            物资管理—物资采购
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.#ctor(TMS.Service.Goodsandmaterials.IGoodsandmaterialsService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
-            <summary>
-            构造函数注入
-            </summary>
-            <param name="goodsandmaterials"></param>
-            <param name="hostingEnvironment"></param>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.GetGoodsAndMaterials(System.String,System.String,System.String)">
-            <summary>
-            物资管理—物资采购—显示API
-            </summary>
-            <param name="cargoName">货物名称</param>
-            <param name="productionPlace">产地</param>
-            <param name="proposerName">申请人</param>
-            <returns></returns>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.AddGoodsAndMaterials(TMS.Model.Entity.GoodsAndMaterials)">
-            <summary>
-            物资管理—添加物资采购信息API
-            </summary>
-            <param name="goodsAndMaterials"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.DelGoodsAndMaterials(System.String)">
-            <summary>
-            物资管理—删除采购信息（假删）API
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.EditGoodsAndMaterials(System.Int32)">
-            <summary>
-            物资管理—查看详情(反填)API
-            </summary>
-            <param name="id">货物ID</param>
-            <returns></returns>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.UpdGoodsAndMaterials(TMS.Model.Entity.GoodsAndMaterials)">
-            <summary>
-            物资管理—修改采购信息API
-            </summary>
-            <param name="goodsAndMaterials">货物数据</param>
-            <returns></returns>
-        </member>
-        <member name="M:TMS.API.Controllers.Goodsandmaterials.GoodsandmaterialsAPIController.UpdContractStatus(System.Int32)">
-            <summary>
-            物资管理—提交审批API
-            </summary>
-            <param name="commonContractStatus"></param>
-            <returns></returns>
-        </member>
         <member name="T:TMS.API.Controllers.Personnel.Employeeregistration.EmployeeregistrationAPIController">
             <summary>
             员工登记API
@@ -377,55 +315,204 @@
             <param name="userModel"></param>
             <returns></returns>
         </member>
-        <member name="T:TMS.API.Controllers.User.DepartmentAPIController">
+        <member name="T:TMS.API.Controllers.Personnel.HiredToHandlerAPIController">
+            <summary>
+            入职办理
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.Personnel.HiredToHandlerAPIController._hiredToHandlerService">
+            <summary>
+            入职办理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Personnel.HiredToHandlerAPIController.#ctor(TMS.Service.Personnel.IHiredToHandlerService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="positiveToDealService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Personnel.HiredToHandlerAPIController.GetHiredToHandlerViewModels(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            入职办理—显示
+            </summary>
+            <param name="EmpName"></param>
+            <param name="EmpDeparName"></param>
+            <param name="PosterName"></param>
+            <param name="EntryTime"></param>
+            <param name="CreateTime"></param>
+            <param name="ExamineStatus"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Personnel.LeaveToDealAPIController">
+            <summary>
+            离职办理
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.Personnel.LeaveToDealAPIController._leaveToDealRepository">
+            <summary>
+            入职办理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Personnel.LeaveToDealAPIController.#ctor(TMS.Service.Personnel.ILeaveToDealService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="positiveToDealService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Personnel.LeaveToDealAPIController.GetLeaveToDealViewModel(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            人事模块—离职办理—显示
+            </summary>
+            <param name="EmpName">员工姓名</param>
+            <param name="EmpDeparName">部门名称</param>
+            <param name="PosterName">职位名称</param>
+            <param name="EntryTime">入职日期</param>
+            <param name="LeaveTime">离职日期</param>
+            <param name="ExamineStatus">审批状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Personnel.PositiveToDealAPIController">
+            <summary>
+            转正办理
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.Personnel.PositiveToDealAPIController._positiveToDealService1">
+            <summary>
+            转正办理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Personnel.PositiveToDealAPIController.#ctor(TMS.Service.Personnel.IPositiveToDealService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="positiveToDealService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Personnel.PositiveToDealAPIController.GetLeaveToDealViewModel(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            人事模块—转正办理—显示
+            </summary>
+            <param name="EmpName">员工姓名</param>
+            <param name="EmpDeparName">部门名称</param>
+            <param name="PosterName">职位名称</param>
+            <param name="EntryTime">入职日期</param>
+            <param name="ProposerTime">申请日期</param>
+            <param name="ExamineStatus">审批状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.GoodsandmaterialsAPIController">
+            <summary>
+            物资管理API
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.GoodsandmaterialsAPIController._goodsandmaterials">
+            <summary>
+            物资管理—物资采购
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.#ctor(TMS.Service.IGoodsandmaterialsService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="goodsandmaterials"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.GetGoodsAndMaterials(System.String,System.String,System.String)">
+            <summary>
+            物资管理—物资采购—显示API
+            </summary>
+            <param name="cargoName">货物名称</param>
+            <param name="productionPlace">产地</param>
+            <param name="proposerName">申请人</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.AddGoodsAndMaterials(TMS.Model.Entity.Purchase.GoodsAndMaterials)">
+            <summary>
+            物资管理—添加物资采购信息API
+            </summary>
+            <param name="goodsAndMaterials"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.DelGoodsAndMaterials(System.String)">
+            <summary>
+            物资管理—删除采购信息（假删）API
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.EditGoodsAndMaterials(System.Int32)">
+            <summary>
+            物资管理—查看详情(反填)API
+            </summary>
+            <param name="id">货物ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.UpdGoodsAndMaterials(TMS.Model.Entity.Purchase.GoodsAndMaterials)">
+            <summary>
+            物资管理—修改采购信息API
+            </summary>
+            <param name="goodsAndMaterials">货物数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.GoodsandmaterialsAPIController.UpdContractStatus(System.Int32)">
+            <summary>
+            物资管理—提交审批API
+            </summary>
+            <param name="commonContractStatus"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Setting.DepartmentAPIController">
             <summary>
             系统管理-部门API
             </summary>
         </member>
-        <member name="M:TMS.API.Controllers.User.DepartmentAPIController.#ctor(TMS.Service.User.IDepartmentService)">
+        <member name="M:TMS.API.Controllers.Setting.DepartmentAPIController.#ctor(TMS.Service.User.IDepartmentService)">
             <summary>
             注入
             </summary>
             <param name="department"></param>
         </member>
-        <member name="M:TMS.API.Controllers.User.DepartmentAPIController.GetDepartmentsAsync(System.String)">
+        <member name="M:TMS.API.Controllers.Setting.DepartmentAPIController.GetDepartmentsAsync(System.String)">
             <summary>
             部门信息显示
             </summary>
             <param name="depName">部门名称查询</param>
             <returns></returns>
         </member>
-        <member name="T:TMS.API.Controllers.User.MenuAPIController">
+        <member name="T:TMS.API.Controllers.Setting.MenuAPIController">
             <summary>
             系统管理-菜单API
             </summary>
         </member>
-        <member name="M:TMS.API.Controllers.User.MenuAPIController.#ctor(TMS.Service.User.Menu.IMenuService)">
+        <member name="M:TMS.API.Controllers.Setting.MenuAPIController.#ctor(TMS.Service.User.Menu.IMenuService)">
             <summary>
             菜单注入
             </summary>
             <param name="menuService"></param>
         </member>
-        <member name="M:TMS.API.Controllers.User.MenuAPIController.GetMenusAsync">
+        <member name="M:TMS.API.Controllers.Setting.MenuAPIController.GetMenusAsync">
             <summary>
             根据用户Id显示菜单
             </summary>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.User.MenuAPIController.TreeAsync">
+        <member name="M:TMS.API.Controllers.Setting.MenuAPIController.TreeAsync">
             <summary>
             Tree菜单
             </summary>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.User.MenuAPIController.Menu_ID(System.Int32)">
+        <member name="M:TMS.API.Controllers.Setting.MenuAPIController.Menu_ID(System.Int32)">
             <summary>
             根据角色Id获取该角色的所有菜单Id
             </summary>
             <param name="roleID">角色ID</param>
             <returns></returns>
         </member>
-        <member name="M:TMS.API.Controllers.User.MenuAPIController.AddRoleMenu(System.Int32,System.String)">
+        <member name="M:TMS.API.Controllers.Setting.MenuAPIController.AddRoleMenu(System.Int32,System.String)">
             <summary>
             分配权限
             </summary>
@@ -433,50 +520,57 @@
             <param name="intList">权限菜单Id集合</param>
             <returns></returns>
         </member>
-        <member name="T:TMS.API.Controllers.User.RoleAPIController">
+        <member name="T:TMS.API.Controllers.Setting.RoleAPIController">
             <summary>
             系统管理-角色API
             </summary>
         </member>
-        <member name="M:TMS.API.Controllers.User.RoleAPIController.#ctor(TMS.Service.User.Role.IRoleService)">
+        <member name="M:TMS.API.Controllers.Setting.RoleAPIController.#ctor(TMS.Service.User.Role.IRoleService)">
             <summary>
             角色注入
             </summary>
             <param name="roleService"></param>
         </member>
-        <member name="M:TMS.API.Controllers.User.RoleAPIController.GetRolesAsync(System.String)">
+        <member name="M:TMS.API.Controllers.Setting.RoleAPIController.GetRolesAsync(System.String)">
             <summary>
             角色信息显示
             </summary>
             <param name="roleName">角色名称查询</param>
             <returns></returns>
         </member>
-        <member name="T:TMS.API.Controllers.User.UserAPIController">
+        <member name="T:TMS.API.Controllers.Setting.UserAPIController">
             <summary>
             用户API
             </summary>
         </member>
-        <member name="F:TMS.API.Controllers.User.UserAPIController._userService">
+        <member name="F:TMS.API.Controllers.Setting.UserAPIController._userService">
             用户服务
         </member>
-        <member name="F:TMS.API.Controllers.User.UserAPIController._tokenHelper">
+        <member name="F:TMS.API.Controllers.Setting.UserAPIController._tokenHelper">
              <summary>
             Token启动服务
              </summary>
         </member>
-        <member name="M:TMS.API.Controllers.User.UserAPIController.#ctor(TMS.Service.User.IUserService,TMS.Common.Jwt.ITokenHelper)">
+        <member name="M:TMS.API.Controllers.Setting.UserAPIController.#ctor(TMS.Service.User.IUserService,TMS.Common.Jwt.ITokenHelper)">
             <summary>
             构造函数进行注入
             </summary>
             <param name="userService"></param>
             <param name="tokenHelper"></param>
         </member>
-        <member name="M:TMS.API.Controllers.User.UserAPIController.GetLogin(System.String,System.String)">
+        <member name="M:TMS.API.Controllers.Setting.UserAPIController.GetLogin(System.String,System.String)">
             <summary>
             用户登录
             </summary>
             <param name="userName">用户名</param>
             <param name="userPwd">用户密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Setting.UserAPIController.RefreshToken(System.String)">
+            <summary>
+            刷新Token令牌
+            </summary>
+            <param name="guid"></param>
             <returns></returns>
         </member>
         <member name="T:TMS.API.Controllers.WeatherForecastController">

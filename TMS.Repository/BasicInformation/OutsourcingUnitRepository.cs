@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Common.DB;
 using TMS.IRepository.BasicInformation;
-using TMS.Model.Entity;
+using TMS.Model.Entity.BasicInformation;
 
 namespace TMS.Repository.BasicInformation
 {

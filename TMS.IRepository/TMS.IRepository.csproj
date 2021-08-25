@@ -13,4 +13,12 @@
     <ProjectReference Include="..\TMS.Model\TMS.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Approve\" />
+    <Folder Include="Contract\" />
+    <Folder Include="Settlement\" />
+    <Folder Include="TailAfter\" />
+    <Folder Include="Vindicate\" />
+  </ItemGroup>
+
 </Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Model.Entity
+namespace TMS.Model.Entity.BasicInformation
 {
     /// <summary>
     /// 基础信息-货主管理 
@@ -54,3 +54,11 @@ namespace TMS.Model.Entity
         public string DrivingLicenceDate { get { return DrivingLicenceTime.ToString("yyyy-MM-dd"); } }
     }
 }
+
+
+
+
+
+
+
+

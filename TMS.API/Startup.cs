@@ -25,15 +25,13 @@ using System.Threading.Tasks;
 using TMS.Common.DB;
 using TMS.Common.Jwt;
 using TMS.Common.Log;
+using TMS.Common.Redis;
 using TMS.Common.SQLInject;
 using TMS.IRepository;
-using TMS.IRepository.User;
 using TMS.Repository.BasicInformation;
 using TMS.Repository.CarRegistration;
-using TMS.Repository.User;
 using TMS.Service.BasicInformation;
 using TMS.Service.CarRegistration;
-using TMS.Service.User;
 
 namespace TMS.API
 {
@@ -94,6 +92,25 @@ namespace TMS.API
             //模型视图控制器添加过滤器(CustomExceptionFilter)
             //AddControllers就是只添加控制器过滤器
             services.AddMvc(config => config.Filters.Add(typeof(CustomExceptionFilter)));
+            #endregion
+
+            #region Redis缓存
+            //redis缓存
+            var section = Configuration.GetSection("Redis:Default");
+            //连接字符串
+            ConfigHelperRedis._conn = section.GetSection("Connection").Value;
+            //实例化名称
+            ConfigHelperRedis._name = section.GetSection("InstanceName").Value;
+            //密码
+            ConfigHelperRedis._pwd = section.GetSection("PassWord").Value;
+            //默认数据库
+            ConfigHelperRedis._db = int.Parse(section.GetSection("DefaultDB").Value ?? "0");
+            //端口号
+            ConfigHelperRedis._port = int.Parse(section.GetSection("Prot").Value);
+            //服务器名称/IP
+            ConfigHelperRedis._server = section.GetSection("Server").Value;
+
+            services.AddSingleton(new RedisHelper());
             #endregion
 
             #region SQL注入

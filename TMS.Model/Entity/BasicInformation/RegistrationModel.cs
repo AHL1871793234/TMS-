@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TMS.Model.Entity
 {
     /// <summary>
-    /// 车辆管理
+    /// 基础信息-车辆管理
     /// </summary>
     public class RegistrationModel
     {
@@ -79,7 +79,7 @@ namespace TMS.Model.Entity
         /// </summary>
         public string InsuranceExpireDate { get { return InsuranceExpireTime.ToString("yyyy-MM-dd"); } }
         /// <summary>
-        /// 年检到期时间
+        /// 保养公里设置
         /// </summary>
         public string AnnualExpireDate { get { return AnnualExpireTime.ToString("yyyy-MM-dd"); } }
     }
