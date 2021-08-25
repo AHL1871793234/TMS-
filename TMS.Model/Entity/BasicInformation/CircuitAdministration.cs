@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Model.Entity.BasicInformation
+namespace TMS.Model.Entity
 {
     /// <summary>
     /// 线路管理表

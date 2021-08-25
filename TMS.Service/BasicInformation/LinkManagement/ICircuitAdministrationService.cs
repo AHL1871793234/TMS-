@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TMS.Model.Entity.BasicInformation;
+using TMS.Model.Entity;
 
 namespace TMS.Service
 {

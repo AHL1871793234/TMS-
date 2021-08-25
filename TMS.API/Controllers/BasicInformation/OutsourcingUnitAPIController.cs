@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMS.Common.MyFilters;
-using TMS.Model.Entity.BasicInformation;
+using TMS.Model.Entity;
 using TMS.Service.BasicInformation;
 
 namespace TMS.API.Controllers.BasicInformation

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TMS.IRepository;
+using TMS.IRepository.Goodsandmaterials;
 using TMS.Model.ViewModel;
 using TMS.IRepository.Personnel;
 using TMS.Model.Entity;
 
 namespace TMS.Service.Personnel
 {
-    public class EmployeeregistrationService : IEmployeeregistrationService
+    public class EmployeeregistrationService:IEmployeeregistrationService
     {
         public readonly IEmployeeregistrationRepository employeeregistration;
 

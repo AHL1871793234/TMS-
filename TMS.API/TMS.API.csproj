@@ -20,7 +20,6 @@
     <PackageReference Include="NLog" Version="4.7.11" />
     <PackageReference Include="NLog.Extensions.Hosting" Version="1.7.3" />
     <PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="5.8.64" />
-    <PackageReference Include="ServiceStack.Redis" Version="5.12.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
   </ItemGroup>
@@ -34,11 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Approve\" />
-    <Folder Include="Controllers\Contract\" />
-    <Folder Include="Controllers\Settlement\" />
-    <Folder Include="Controllers\TailAfter\" />
-    <Folder Include="Controllers\Vindicate\" />
     <Folder Include="wwwroot\Image\" />
   </ItemGroup>
 

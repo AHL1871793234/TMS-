@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS.Model.Entity.BasicInformation
+namespace TMS.Model.Entity
 {
     /// <summary>
     /// 外协单位表
@@ -35,9 +35,6 @@ namespace TMS.Model.Entity.BasicInformation
         /// 外协单位地址
         /// </summary>
         public string OutsourcingUnitPlace { get; set; }
-        /// <summary>
-        /// 负责人
-        /// </summary>
         public string OutsourcingUnitResponsibleName { get; set; }
         /// <summary>
         /// 创建时间

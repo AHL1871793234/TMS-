@@ -9,7 +9,7 @@ namespace TMS.Model.ViewModel
     /// <summary>
     /// 离职视图
     /// </summary>
-    public  class LeaveToDealViewModel
+    public class LeaveToDealViewModel
     {
         /// <summary>
         /// 员工名称
