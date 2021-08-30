@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMS.Common.MyFilters;
-using TMS.Model.Entity;
+using TMS.Model.Entity.BasicInformation;
 using TMS.Service;
 
 namespace TMS.API.Controllers.BasicInformation
@@ -105,6 +105,7 @@ namespace TMS.API.Controllers.BasicInformation
         {
             return Ok(await _circuit.SmallUpd(id, status));
         }
+
         /// <summary>
         /// 抛出异常，验证异常过滤器
         /// </summary>

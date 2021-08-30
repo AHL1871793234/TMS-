@@ -6,54 +6,149 @@ namespace TMS.Common.MD5Helper
 {
     public class MD5Helper
     {
+        #region MD5加密解密
         /// <summary>
-        /// MD5加密
+        /// 加密
         /// </summary>
-        /// <param name="input">需要加密的字符串</param>
+        /// <param name="Text">要加密的文本</param>
+        /// <param name="sKey">秘钥</param>
         /// <returns></returns>
-        public static string MD5Encrypt(string input)
+        public static string Encrypt(string Text, string sKey = "test")
         {
-            return MD5Encrypt(input, new UTF8Encoding());
+            DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+            byte[] inputByteArray;
+            inputByteArray = Encoding.Default.GetBytes(Text);
+            des.Key = ASCIIEncoding.ASCII.GetBytes(Md5Hash(sKey).Substring(0, 8));
+            des.IV = ASCIIEncoding.ASCII.GetBytes(Md5Hash(sKey).Substring(0, 8));
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
+            cs.Write(inputByteArray, 0, inputByteArray.Length);
+            cs.FlushFinalBlock();
+            StringBuilder ret = new StringBuilder();
+            foreach (byte b in ms.ToArray())
+            {
+                ret.AppendFormat("{0:X2}", b);
+            }
+            return ret.ToString();
         }
-
         /// <summary>
-        /// md5加密16|32位
+        /// 解密
+        /// </summary>
+        /// <param name="Text"></param>
+        /// <param name="sKey"></param>
+        /// <returns></returns>
+        public static string Decrypt(string Text, string sKey = "test")
+        {
+            DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+            int len;
+            len = Text.Length / 2;
+            byte[] inputByteArray = new byte[len];
+            int x, i;
+            for (x = 0; x < len; x++)
+            {
+                i = Convert.ToInt32(Text.Substring(x * 2, 2), 16);
+                inputByteArray[x] = (byte)i;
+            }
+            des.Key = ASCIIEncoding.ASCII.GetBytes(Md5Hash(sKey).Substring(0, 8));
+            des.IV = ASCIIEncoding.ASCII.GetBytes(Md5Hash(sKey).Substring(0, 8));
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
+            cs.Write(inputByteArray, 0, inputByteArray.Length);
+            cs.FlushFinalBlock();
+            return Encoding.Default.GetString(ms.ToArray());
+        }
+        /// <summary>
+        /// 32位MD5加密
         /// </summary>
         /// <param name="input"></param>
-        /// <param name="length"></param>
         /// <returns></returns>
-        public static string MD5Encrypt(string input, int length)
+        private static string Md5Hash(string input)
         {
-            string res = MD5Encrypt(input, new UTF8Encoding());
-            if (length == 16)
-            {
-                res = res.Substring(8, 16);
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// MD5加密
-        /// </summary>
-        /// <param name="input">需要加密的字符串</param>
-        /// <param name="encode">字符的编码</param>
-        /// <returns></returns>
-        public static string MD5Encrypt(string input, Encoding encode)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                return null;
-            }
+            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
+            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
             StringBuilder sBuilder = new StringBuilder();
-            using (MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider())
+            for (int i = 0; i < data.Length; i++)
             {
-                byte[] data = md5Hasher.ComputeHash(encode.GetBytes(input));
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
+                sBuilder.Append(data[i].ToString("x2"));
             }
             return sBuilder.ToString();
         }
+        #endregion
+
+        #region AES加密解密 
+        /// <summary>
+        /// 128位处理key 
+        /// </summary>
+        /// <param name="keyArray">原字节</param>
+        /// <param name="key">处理key</param>
+        /// <returns></returns>
+        private static byte[] GetAesKey(byte[] keyArray, string key)
+        {
+            byte[] newArray = new byte[16];
+            if (keyArray.Length < 16)
+            {
+                for (int i = 0; i < newArray.Length; i++)
+                {
+                    if (i >= keyArray.Length)
+                    {
+                        newArray[i] = 0;
+                    }
+                    else
+                    {
+                        newArray[i] = keyArray[i];
+                    }
+                }
+            }
+            return newArray;
+        }
+        /// <summary>
+        /// 使用AES加密字符串,按128位处理key
+        /// </summary>
+        /// <param name="content">加密内容</param>
+        /// <param name="key">秘钥，需要128位、256位.....</param>
+        /// <returns>Base64字符串结果</returns>
+        public static string AesEncrypt(string content, string key, bool autoHandle = true)
+        {
+            byte[] keyArray = Encoding.UTF8.GetBytes(key);
+            if (autoHandle)
+            {
+                keyArray = GetAesKey(keyArray, key);
+            }
+            byte[] toEncryptArray = Encoding.UTF8.GetBytes(content);
+
+            SymmetricAlgorithm des = Aes.Create();
+            des.Key = keyArray;
+            des.Mode = CipherMode.ECB;
+            des.Padding = PaddingMode.PKCS7;
+            ICryptoTransform cTransform = des.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+            return Convert.ToBase64String(resultArray);
+        }
+        /// <summary>
+        /// 使用AES解密字符串,按128位处理key
+        /// </summary>
+        /// <param name="content">内容</param>
+        /// <param name="key">秘钥，需要128位、256位.....</param>
+        /// <returns>UTF8解密结果</returns>
+        public static string AesDecrypt(string content, string key, bool autoHandle = true)
+        {
+            byte[] keyArray = Encoding.UTF8.GetBytes(key);
+            if (autoHandle)
+            {
+                keyArray = GetAesKey(keyArray, key);
+            }
+            byte[] toEncryptArray = Convert.FromBase64String(content);
+
+            SymmetricAlgorithm des = Aes.Create();
+            des.Key = keyArray;
+            des.Mode = CipherMode.ECB;
+            des.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform cTransform = des.CreateDecryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+            return Encoding.UTF8.GetString(resultArray);
+        }
+        #endregion
     }
 }
