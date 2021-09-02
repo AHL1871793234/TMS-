@@ -12,7 +12,7 @@ using TMS.Model.Entity.Purchase;
 namespace TMS.API.Controllers
 {
     /// <summary>
-    /// 物资管理API
+    /// 物资采购API
     /// </summary>
     [Route("GoodsandmaterialsAPI")]
     [ApiController]

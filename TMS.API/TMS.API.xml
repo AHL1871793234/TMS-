@@ -402,9 +402,123 @@
             <param name="ExamineStatus">审批状态</param>
             <returns></returns>
         </member>
+        <member name="T:TMS.API.Controllers.Purchase.AidRecipientAPIController">
+            <summary>
+            物资领用API
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.Purchase.AidRecipientAPIController._aidRecipientService">
+            <summary>
+            物资管理—物资领用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.AidRecipientAPIController.#ctor(TMS.Service.IAidRecipientService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="aidRecipientService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.AidRecipientAPIController.GetAidRecipient(System.String,System.Nullable{System.DateTime},System.Int32,System.String,System.Int32)">
+            <summary>
+            物资领用显示API
+            </summary>
+            <param name="Proposer"></param>
+            <param name="ProposerTime"></param>
+            <param name="CommonContractStatus"></param>
+            <param name="CommonContractName"></param>
+            <param name="AidRecipientsStatus"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.AidRecipientAPIController.DelAidRecipient(System.String)">
+            <summary>
+            删除领用信息API(假删)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.AidRecipientAPIController.EditAidRecipient(System.Int32)">
+            <summary>
+            物资领用反填详情信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Purchase.MaterialStatisticsAPIController">
+            <summary>
+            物资统计API
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.Purchase.MaterialStatisticsAPIController._materialStatisticsService">
+            <summary>
+            物资管理—物资统计显示+查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.MaterialStatisticsAPIController.#ctor(TMS.Service.Purchase.MaterialStatistics.IMaterialStatisticsService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="materialStatisticsService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.MaterialStatisticsAPIController.GetMaterialStatistics(System.String,System.String,System.String,System.String)">
+            <summary>
+            物资统计
+            </summary>
+            <param name="GoodsAndMaterialsName">货物名称</param>
+            <param name="GoodsAndMaterialsTypeName">类别</param>
+            <param name="TextureName">材质</param>
+            <param name="PlaceOfOrigin">产地</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Purchase.StockManagementAPIController">
+            <summary>
+            物资入库API
+            </summary>
+        </member>
+        <member name="F:TMS.API.Controllers.Purchase.StockManagementAPIController._stockManagement">
+            <summary>
+            物资管理—物资入库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.StockManagementAPIController.#ctor(TMS.Service.Purchase.StockManagement.IStockManagementService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="stockManagementService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.StockManagementAPIController.GetStorageAdministrations(System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            物资管理—物资入库—显示API
+            </summary>
+            <param name="storageName">货物名称</param>
+            <param name="TextureId">材料</param>
+            <param name="placeOfOrigin">产地</param>
+            /// <param name="payType">支付方式</param>
+            /// <param name="proposer">登记人</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.StockManagementAPIController.DelStorageAdministrations(System.String)">
+            <summary>
+            物资管理—删除入库信息（假删）
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Purchase.StockManagementAPIController.EditStorageAdministration(System.Int32)">
+            <summary>
+            物资管理—查看详情(反填)API
+            </summary>
+            <param name="id">货物ID</param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.GoodsandmaterialsAPIController">
             <summary>
-            物资管理API
+            物资采购API
             </summary>
         </member>
         <member name="F:TMS.API.Controllers.GoodsandmaterialsAPIController._goodsandmaterials">
@@ -571,6 +685,108 @@
             刷新Token令牌
             </summary>
             <param name="guid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Settlement.ChargeAPIController">
+            <summary>
+            结算管理-应收费用管理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ChargeAPIController.#ctor(TMS.Service.IChargeService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="owner"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ChargeAPIController.GetCharge(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            应收费用管理-显示API
+            </summary>
+            <param name="ChargeOwnerOfCargoUnit"></param>
+            <param name="PayType"></param>
+            <param name="CheckType"></param>
+            <param name="CircuitResponsibleName"></param>
+            <param name="ProfessionalTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ChargeAPIController.AddCharges(TMS.Model.Entity.Settlement.Charge)">
+            <summary>
+            应收费用管理-添加数据
+            </summary>
+            <param name="charge"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ChargeAPIController.DelCharges(System.String)">
+            <summary>
+            应用费用管理—删除数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ChargeAPIController.EditCharges(System.Int32)">
+            <summary>
+            应用费用管理—反填数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ChargeAPIController.UpdCharge(TMS.Model.Entity.Settlement.Charge)">
+            <summary>
+            应用费用管理—修改数据
+            </summary>
+            <param name="charge"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Settlement.PayAdministrationAPIController">
+            <summary>
+            结算管理-应付费用管理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PayAdministrationAPIController.#ctor(TMS.Service.IPayAdministrationService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="payAdministration"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PayAdministrationAPIController.GetPayAdministration(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            应付费用管理-显示+查询
+            </summary>
+            <param name="ChargeOwnerOfCargoUnit"></param>
+            <param name="PayType"></param>
+            <param name="CheckType"></param>
+            <param name="CircuitResponsibleName"></param>
+            <param name="ProfessionalTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PayAdministrationAPIController.AddPayAdministration(TMS.Model.Entity.Settlement.PayAdministration)">
+            <summary>
+            应付费用管理-添加数据
+            </summary>
+            <param name="payAdministration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PayAdministrationAPIController.DelPayAdministration(System.String)">
+            <summary>
+            应付费用管理-删除数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PayAdministrationAPIController.EditPayAdministration(System.Int32)">
+            <summary>
+            应付费用管理-反填获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PayAdministrationAPIController.UpdPayAdministration(TMS.Model.Entity.Settlement.PayAdministration)">
+            <summary>
+            应付费用管理-修改数据
+            </summary>
+            <param name="payAdministration"></param>
             <returns></returns>
         </member>
         <member name="T:TMS.API.Controllers.WeatherForecastController">
