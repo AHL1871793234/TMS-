@@ -34,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Approve\" />
     <Folder Include="Controllers\Contract\" />
     <Folder Include="Controllers\TailAfter\" />
     <Folder Include="Controllers\Vindicate\" />

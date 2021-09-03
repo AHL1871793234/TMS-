@@ -4,6 +4,108 @@
         <name>TMS.API</name>
     </assembly>
     <members>
+        <member name="T:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController">
+            <summary>
+            货主审批合同管理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController.#ctor(TMS.Service.IOwnerOfCargoExamineService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="ownerOfCargoExamineService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController.GetOwnerOfCargoExamine(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            货主合同审批-显示+查询
+            </summary>
+            <param name="OwnerOfCargoContractTitle">合同标题</param>
+            <param name="OwnerOfCargoContractUnit">货主单位</param>
+            <param name="OwnerOfCargoContractName">货主负责人</param>
+            <param name="CircuitResponsibleName">经办人</param>
+            <param name="DateOfSigningTime">签订时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController.EditOwnerOfCargoExamine(System.String)">
+            <summary>
+            货主合同审批-查看合同审批详情信息
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController.EditPassAccommodation(System.String)">
+            <summary>
+            合同通过并转批
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController.EditNoPass(System.String)">
+            <summary>
+            拒绝(审批未通过)
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwnerOfCargoExamineAPIController.EditPassEnd(System.String)">
+            <summary>
+            审批通过并终止审批
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController">
+            <summary>
+            货主审批合同管理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController.#ctor(TMS.Service.IOwOutsourcingUnitExamineService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="ownerOfCargoExamineService"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController.GetOwOutsourcingUnitExamine(System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            货主合同审批-显示+查询
+            </summary>
+            <param name="AcceptContractTitle">合同标题</param>
+            <param name="AcceptContractUnit">货主单位</param>
+            <param name="OwnerOfCargoContractName">货主负责人</param>
+            <param name="CircuitResponsibleName">经办人</param>
+            <param name="DateOfSigningTime">签订时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController.EditOwOutsourcingUnitExamine(System.String)">
+            <summary>
+            货主合同审批-查看合同审批详情信息
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController.EditPassAccommodation(System.String)">
+            <summary>
+            合同通过并转批
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController.EditNoPass(System.String)">
+            <summary>
+            拒绝(审批未通过)
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Approve.OwOutsourcingUnitExamineAPIController.EditPassEnd(System.String)">
+            <summary>
+            审批通过并终止审批
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.BasicInformation.CircuitAdministrationAPIController">
             <summary>
             基本信息—线路API
