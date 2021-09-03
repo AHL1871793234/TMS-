@@ -738,6 +738,55 @@
             <param name="charge"></param>
             <returns></returns>
         </member>
+        <member name="T:TMS.API.Controllers.Settlement.OutputNvoiceAPIController">
+            <summary>
+            销项发票管理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.OutputNvoiceAPIController.#ctor(TMS.Service.IOutputNvoiceService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="outputNvoice"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.OutputNvoiceAPIController.GetOutputNvoice(System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            销项发票管理-显示+查询
+            </summary>
+            <param name="OutputNvoiceName"></param>
+            <param name="ReceiptsNvoiceType"></param>
+            <param name="InvoiceTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.OutputNvoiceAPIController.AddOutputNvoice(TMS.Model.Entity.Settlement.OutputNvoice)">
+            <summary>
+            销项发票管理-添加数据
+            </summary>
+            <param name="outputNvoice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.OutputNvoiceAPIController.DelOutputNvoice(System.String)">
+            <summary>
+            销项发票管理-删除数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.OutputNvoiceAPIController.EditOutputNvoice(System.Int32)">
+            <summary>
+            销项发票管理-反填获取详情信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.OutputNvoiceAPIController.UpdOutputNvoice(TMS.Model.Entity.Settlement.OutputNvoice)">
+            <summary>
+            销项发票管理-修改数据
+            </summary>
+            <param name="outputNvoice"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.API.Controllers.Settlement.PayAdministrationAPIController">
             <summary>
             结算管理-应付费用管理
@@ -787,6 +836,107 @@
             应付费用管理-修改数据
             </summary>
             <param name="payAdministration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Settlement.PaymentAPIController">
+            <summary>
+            销项发票管理-付款管理
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PaymentAPIController.#ctor(TMS.Service.IPaymentService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="outputNvoice"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PaymentAPIController.GetPayment(System.String,System.Nullable{System.DateTime},System.String,System.Int32,System.String)">
+            <summary>
+            销项发票管理-付款管理-显示+查询
+            </summary>
+            <param name="PaymentTitle"></param>
+            <param name="PayTime"></param>
+            <param name="ReceiptsNvoiceType"></param>
+            <param name="CommonContractStatus"></param>
+            <param name="CommonContractName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PaymentAPIController.AddPayment(TMS.Model.Entity.Settlement.Payment)">
+            <summary>
+            销项发票管理-付款管理-添加数据
+            </summary>
+            <param name="payment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PaymentAPIController.DelPayment(System.String)">
+            <summary>
+            销项发票管理-付款管理-删除数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PaymentAPIController.EditPayment(System.Int32)">
+            <summary>
+            销项发票管理-付款管理-反填获取详情信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.PaymentAPIController.UpdPayment(TMS.Model.Entity.Settlement.Payment)">
+            <summary>
+            销项发票管理-付款管理-修改数据
+            </summary>
+            <param name="payment"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController">
+            <summary>
+            进项发票管理-显示+查询
+            </summary>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController.#ctor(TMS.Service.IReceiptsNvoiceService,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数进行注入
+            </summary>
+            <param name="receiptsNvoice"></param>
+            <param name="hostingEnvironment"></param>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController.GetReceiptsNvoice(System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            进项发票管理-显示+查询
+            </summary>
+            <param name="ChargeOwnerOfCargoUnit"></param>
+            <param name="ReceiptsNvoiceType"></param>
+            <param name="CheckType"></param>
+            <param name="InvoiceTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController.AddReceiptsNvoice(TMS.Model.Entity.Settlement.ReceiptsNvoice)">
+            <summary>
+            进项发票管理-添加数据
+            </summary>
+            <param name="receiptsNvoice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController.DelReceiptsNvoice(System.String)">
+            <summary>
+            进项发票管理-删除数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController.EditReceiptsNvoice(System.Int32)">
+            <summary>
+            进项发票管理-反填相关详情数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.Settlement.ReceiptsNvoiceAPIController.UpdReceiptsNvoice(TMS.Model.Entity.Settlement.ReceiptsNvoice)">
+            <summary>
+            进项发票管理-修改数据
+            </summary>
+            <param name="receiptsNvoice"></param>
             <returns></returns>
         </member>
         <member name="T:TMS.API.Controllers.WeatherForecastController">

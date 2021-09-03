@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TMS.Model.Entity.Settlement;
 
-namespace TMS.IRepository
+namespace TMS.Service
 {
-    public interface IReceiptsNvoiceRepository
+    public interface IReceiptsNvoiceService
     {
         /// <summary>
         /// 进项发票管理-显示+查询
@@ -34,7 +34,7 @@ namespace TMS.IRepository
         Task<bool> DelReceiptsNvoice(string id);
 
         /// <summary>
-        /// 进项发票管理-反填获取相关详情信息
+        /// 进项发票管理-反填获取详情数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
